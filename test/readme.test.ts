@@ -38,17 +38,24 @@ describe("the README", () => {
   })
 
   it("quotes the arrays, the curly quotes and strict mode", () => {
-    for (const b of ["prose", "twice"]) {
-      assert.equal(jr.changes[b as "prose"]["not the object"], count(b))
-      assert.equal(py.outcomes[b as "prose"].exact, count(b))
-      assert.equal(strict.outcomes[b as "prose"].refused, count(b))
+    for (const b of ["prose", "twice"] as const) {
+      assert.equal(jr.changes[b]["an array, not the object"], count(b))
+      assert.equal(py.outcomes[b].exact, count(b))
+      assert.equal(strict.outcomes[b].refused, count(b))
     }
+    assert.equal(jr.outcomes["prose-inline"].refused, count("prose-inline"))
+    assert.equal(py.outcomes["prose-inline"].exact, count("prose-inline"))
+    assert.equal(strict.outcomes["prose-inline"].refused, count("prose-inline"))
     says(`all ${n(count("prose"))} come back as an array`)
+    says("| the same sentences on the JSON's line | 2,028 | all refused | exact | all refused |")
     const plain = py.curlyQuotes.plain
-    assert.equal(jr.curlyQuotes.plain.exact, plain.exact + plain.changed)
-    says(`${n(plain.exact + plain.changed)} replies had no curly quote in their own text. json_repair cut ${n(plain.cutAtComma)} of them`)
-    says(`broke the fields of ${n(plain.changed - plain.cutAtComma)} more`)
+    const { commaThenMore, noCommaThenMore } = py.curlyQuotes
+    assert.equal(commaThenMore.replies + noCommaThenMore.replies, plain.exact + plain.changed + plain.refused + plain.dropped)
+    assert.equal(jr.curlyQuotes.plain.exact, commaThenMore.replies + noCommaThenMore.replies)
+    says(`${n(jr.curlyQuotes.plain.exact)} replies had no curly double quote in their own text`)
+    says(`In the ${n(commaThenMore.replies)} of them where a string holding a comma has another value after it, json_repair changed ${n(commaThenMore.notExact)}; in the other ${n(noCommaThenMore.replies)}, it changed ${n(noCommaThenMore.notExact)}`)
     says(`jsonrepair returned all ${n(jr.curlyQuotes.plain.exact)} exactly`)
+    assert.equal(jr.curlyQuotes.curly.exact, 0, "every curly-quoted reply jsonrepair changed or refused had a curly quote in its text")
     says(`| as sent (control) | ${n(count("as-sent"))} | ${n(jr.outcomes["as-sent"].exact)} exact | ${n(py.outcomes["as-sent"].exact)} exact | ${n(strict.outcomes["as-sent"].refused)} refused (fenced) |`)
     const row = (r: Result, b: "smart-quotes" | "inner-quotes") =>
       Object.entries(r.outcomes[b])
@@ -57,10 +64,13 @@ describe("the README", () => {
         .join(", ")
     says(`| curly quotes | ${n(count("smart-quotes"))} | ${row(jr, "smart-quotes")} | ${row(py, "smart-quotes")} | ${row(strict, "smart-quotes")} |`)
     says(`| unescaped inner quotes | ${n(count("inner-quotes"))} | ${row(jr, "inner-quotes")} | ${row(py, "inner-quotes")} | ${row(strict, "inner-quotes")} |`)
-    says(`in ${n(py.verdicts["inner-quotes"].zod.rejected)} replies the verdict field disappeared into a made-up key, turning ${n(py.verdicts["inner-quotes"].truthy.passReadAsFail)} passes into fails`)
+    says(`jsonrepair returned ${n(jr.outcomes["inner-quotes"].exact)} exactly and refused ${n(jr.outcomes["inner-quotes"].refused)}`)
+    says(`json_repair changed ${n(py.outcomes["inner-quotes"].changed)}, and in ${n(py.verdicts["inner-quotes"].zod.rejected)} of them the verdict field disappeared into a made-up key, turning ${n(py.verdicts["inner-quotes"].truthy.passReadAsFail)} passes into fails`)
     for (const b of ["trailing-comma", "comment", "python", "raw-newline", "missing-comma"] as const) {
       for (const r of [jr, py, strict]) assert.equal(r.outcomes[b].exact, count(b), `${r.library} ${b}`)
     }
+    const nested = replies.filter((r) => Object.values(r.value as object).some((x) => x && typeof x === "object"))
+    says(`${n(nested.length)} are nested (${n(nested.filter((r) => r.kind === "judge").length)} judge replies about message drafts and the ${n(nested.filter((r) => r.kind === "extraction").length)} from wa-lead)`)
   })
 
   it("quotes the cut table", () => {
@@ -77,5 +87,9 @@ describe("the README", () => {
     says(`refused ${n(jr.outcomes["inner-quotes"].refused)} of ${n(count("inner-quotes"))} replies with unescaped inner quotes`)
     says(`returned ${n(jr.outcomes["inner-quotes"].exact)} exactly`)
     says(`it changed ${n(py.outcomes["smart-quotes"].changed)}`)
+    // A cut inside the closing fence, after the JSON is complete: two positions per fenced reply.
+    assert.equal(jr.changes.cut["an array, not the object"], 2 * replies.filter((r) => r.raw !== unfence(r.raw)).length)
+    assert.ok((py.changes.cut["an array, not the object"] ?? 0) > 0)
+    says("Four were wrong in part")
   })
 })

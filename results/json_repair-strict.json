@@ -1,6 +1,6 @@
 {
  "library": "json_repair 0.64.0, strict=True",
- "variants": 382689,
+ "variants": 384717,
  "outcomes": {
   "as-sent": {
    "exact": 1544,
@@ -21,6 +21,12 @@
    "changed": 0
   },
   "prose": {
+   "exact": 0,
+   "refused": 2028,
+   "dropped": 0,
+   "changed": 0
+  },
+  "prose-inline": {
    "exact": 0,
    "refused": 2028,
    "dropped": 0,
@@ -78,7 +84,7 @@
  "changes": {
   "as-sent": {},
   "cut": {
-   "not the object": 3872,
+   "text, not the object": 3872,
    "missing": 148756,
    "text cut short": 270916,
    "true, false or null became text": 5602,
@@ -87,6 +93,7 @@
   },
   "fence": {},
   "prose": {},
+  "prose-inline": {},
   "trailing-comma": {},
   "comment": {},
   "python": {},
@@ -185,6 +192,32 @@
    }
   },
   "prose": {
+   "truthy": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "strict": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "zod": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "pydantic": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   }
+  },
+  "prose-inline": {
    "truthy": {
     "right": 0,
     "failReadAsPass": 0,
@@ -443,14 +476,14 @@
    ]
   },
   "cut": {
-   "not the object": [
+   "text, not the object": [
     {
      "reply": "j0001",
      "at": 1,
      "text": "`",
      "got": "\"\"",
      "how": [
-      "$ not the object"
+      "$ text, not the object"
      ]
     },
     {
@@ -459,7 +492,7 @@
      "text": "``",
      "got": "\"\"",
      "how": [
-      "$ not the object"
+      "$ text, not the object"
      ]
     },
     {
@@ -468,7 +501,7 @@
      "text": "```",
      "got": "\"\"",
      "how": [
-      "$ not the object"
+      "$ text, not the object"
      ]
     }
    ],
@@ -672,6 +705,28 @@
     {
      "reply": "j0003",
      "text": "Here is my assessment:\n\n{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion.\",\n  \"pass\": true,\n  \"score\": 1.0\n}\n\nLet me know if you need anything else.",
+     "got": "ValueError: Multiple top-level JSON elements found in strict mode.",
+     "how": []
+    }
+   ]
+  },
+  "prose-inline": {
+   "refused": [
+    {
+     "reply": "j0001",
+     "text": "Here is my assessment: { \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\", \"pass\": true, \"score\": 1.0 } Let me know if you need anything else.",
+     "got": "ValueError: Multiple top-level JSON elements found in strict mode.",
+     "how": []
+    },
+    {
+     "reply": "j0002",
+     "text": "Here is my assessment: { \"reason\": \"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.\", \"pass\": false, \"score\": 0.0 } Let me know if you need anything else.",
+     "got": "ValueError: Multiple top-level JSON elements found in strict mode.",
+     "how": []
+    },
+    {
+     "reply": "j0003",
+     "text": "Here is my assessment: { \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion.\", \"pass\": true, \"score\": 1.0 } Let me know if you need anything else.",
      "got": "ValueError: Multiple top-level JSON elements found in strict mode.",
      "how": []
     }
@@ -892,17 +947,25 @@
  },
  "curlyQuotes": {
   "plain": {
-   "exact": 1358,
+   "exact": 1457,
    "refused": 0,
    "dropped": 0,
-   "changed": 456,
-   "cutAtComma": 446
+   "changed": 472,
+   "cutAtComma": 462
   },
   "curly": {
-   "exact": 102,
+   "exact": 3,
    "refused": 32,
    "dropped": 0,
-   "changed": 80
+   "changed": 64
+  },
+  "commaThenMore": {
+   "replies": 480,
+   "notExact": 463
+  },
+  "noCommaThenMore": {
+   "replies": 1449,
+   "notExact": 9
   }
  }
 }

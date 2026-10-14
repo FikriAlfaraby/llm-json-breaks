@@ -27,8 +27,9 @@ describe("outcomes", () => {
     assert.deepEqual(how({ ...meant, pass: 0 }), ["$.pass type changed"])
     assert.deepEqual(how({ ...meant, areas: ["BSD", "Serp"] }), ["$.areas[1] text cut short"])
     assert.deepEqual(how({ ...meant, extra: 1 }), ["$.extra extra"])
-    assert.deepEqual(how([meant, meant]), ["$ not the object"])
-    assert.deepEqual(how(""), ["$ not the object"])
+    assert.deepEqual(how([meant, meant]), ["$ an array, not the object"])
+    assert.deepEqual(how(""), ["$ text, not the object"])
+    assert.deepEqual(how(null), ["$ not the object"])
     assert.equal(outcomeOf(meant, got({ ...meant, pass: "f" })).outcome, "changed")
   })
 

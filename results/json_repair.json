@@ -1,6 +1,6 @@
 {
  "library": "json_repair 0.64.0",
- "variants": 382689,
+ "variants": 384717,
  "outcomes": {
   "as-sent": {
    "exact": 2028,
@@ -21,6 +21,12 @@
    "changed": 0
   },
   "prose": {
+   "exact": 2028,
+   "refused": 0,
+   "dropped": 0,
+   "changed": 0
+  },
+  "prose-inline": {
    "exact": 2028,
    "refused": 0,
    "dropped": 0,
@@ -78,8 +84,9 @@
  "changes": {
   "as-sent": {},
   "cut": {
-   "not the object": 17695,
+   "text, not the object": 3872,
    "missing": 158377,
+   "an array, not the object": 13823,
    "text cut short": 275253,
    "type changed": 7826,
    "true, false or null became text": 5602,
@@ -88,6 +95,7 @@
   },
   "fence": {},
   "prose": {},
+  "prose-inline": {},
   "trailing-comma": {},
   "comment": {},
   "python": {},
@@ -186,6 +194,32 @@
    }
   },
   "prose": {
+   "truthy": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "strict": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "zod": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "pydantic": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   }
+  },
+  "prose-inline": {
    "truthy": {
     "right": 1597,
     "failReadAsPass": 0,
@@ -423,14 +457,14 @@
  "examples": {
   "as-sent": {},
   "cut": {
-   "not the object": [
+   "text, not the object": [
     {
      "reply": "j0001",
      "at": 1,
      "text": "`",
      "got": "\"\"",
      "how": [
-      "$ not the object"
+      "$ text, not the object"
      ]
     },
     {
@@ -439,7 +473,7 @@
      "text": "``",
      "got": "\"\"",
      "how": [
-      "$ not the object"
+      "$ text, not the object"
      ]
     },
     {
@@ -448,7 +482,36 @@
      "text": "```",
      "got": "\"\"",
      "how": [
-      "$ not the object"
+      "$ text, not the object"
+     ]
+    }
+   ],
+   "an array, not the object": [
+    {
+     "reply": "j0001",
+     "at": 13,
+     "text": "```json\n{\n  \"",
+     "got": "[]",
+     "how": [
+      "$ an array, not the object"
+     ]
+    },
+    {
+     "reply": "j0001",
+     "at": 14,
+     "text": "```json\n{\n  \"r",
+     "got": "[\"r\"]",
+     "how": [
+      "$ an array, not the object"
+     ]
+    },
+    {
+     "reply": "j0001",
+     "at": 15,
+     "text": "```json\n{\n  \"re",
+     "got": "[\"re\"]",
+     "how": [
+      "$ an array, not the object"
      ]
     }
    ],
@@ -623,6 +686,7 @@
   },
   "fence": {},
   "prose": {},
+  "prose-inline": {},
   "trailing-comma": {},
   "comment": {},
   "python": {},
@@ -777,17 +841,25 @@
  },
  "curlyQuotes": {
   "plain": {
-   "exact": 1358,
+   "exact": 1457,
    "refused": 0,
    "dropped": 0,
-   "changed": 456,
-   "cutAtComma": 446
+   "changed": 472,
+   "cutAtComma": 462
   },
   "curly": {
-   "exact": 102,
+   "exact": 3,
    "refused": 0,
    "dropped": 0,
-   "changed": 112
+   "changed": 96
+  },
+  "commaThenMore": {
+   "replies": 480,
+   "notExact": 463
+  },
+  "noCommaThenMore": {
+   "replies": 1449,
+   "notExact": 9
   }
  }
 }

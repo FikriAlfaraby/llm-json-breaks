@@ -19,6 +19,8 @@ export type How =
   | "true, false or null became text"
   | "became null"
   | "type changed"
+  | "an array, not the object"
+  | "text, not the object"
   | "not the object"
 
 export interface Difference {
@@ -51,7 +53,9 @@ export function differences(meant: unknown, got: unknown, path = "$"): Differenc
     }
     return out
   }
-  if (path === "$" && (isObject(meant) || Array.isArray(meant))) return [{ path, how: "not the object" }]
+  if (path === "$" && (isObject(meant) || Array.isArray(meant))) {
+    return [{ path, how: Array.isArray(got) ? "an array, not the object" : typeof got === "string" ? "text, not the object" : "not the object" }]
+  }
   if (typeof meant === "string" && typeof got === "string") {
     return [{ path, how: got.length < meant.length && meant.startsWith(got) ? "text cut short" : "text changed" }]
   }

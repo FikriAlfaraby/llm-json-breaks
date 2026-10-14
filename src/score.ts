@@ -25,10 +25,16 @@ interface Example {
   how: string[]
 }
 
-/** Curly-quoted replies, split by whether their own text holds a curly quote. */
+/**
+ * Curly-quoted replies, split by whether their own text holds a curly double quote (the one mark
+ * a parser cannot tell from the end of a string here). Plain replies are split again by whether a
+ * string with a comma has another value after it in the same object or array.
+ */
 interface QuoteSplit {
   plain: Record<Outcome, number> & { cutAtComma: number }
   curly: Record<Outcome, number>
+  commaThenMore: { replies: number; notExact: number }
+  noCommaThenMore: { replies: number; notExact: number }
 }
 
 export interface Result {
@@ -67,7 +73,12 @@ export function score(
     changes: empty(() => ({})),
     verdicts: empty(() => Object.fromEntries([...Object.keys(READERS), "pydantic"].map((r) => [r, { right: 0, failReadAsPass: 0, passReadAsFail: 0, rejected: 0 }])) as Record<Reader, Tally>),
     examples: empty(() => ({})),
-    curlyQuotes: { plain: { exact: 0, refused: 0, dropped: 0, changed: 0, cutAtComma: 0 }, curly: { exact: 0, refused: 0, dropped: 0, changed: 0 } },
+    curlyQuotes: {
+      plain: { exact: 0, refused: 0, dropped: 0, changed: 0, cutAtComma: 0 },
+      curly: { exact: 0, refused: 0, dropped: 0, changed: 0 },
+      commaThenMore: { replies: 0, notExact: 0 },
+      noCommaThenMore: { replies: 0, notExact: 0 },
+    },
   }
   variants.forEach((variant, i) => {
     const got = repaired[i]
@@ -90,6 +101,11 @@ export function score(
       if (side === "plain" && got.ok && differences.length > 0 && differences.every((d) => d.how === "text cut short" && cutBeforeComma(variant.value, got.value, d.path))) {
         result.curlyQuotes.plain.cutAtComma += 1
       }
+      if (side === "plain") {
+        const group = result.curlyQuotes[commaThenMore(variant.value) ? "commaThenMore" : "noCommaThenMore"]
+        group.replies += 1
+        if (outcome !== "exact") group.notExact += 1
+      }
     }
     const meant = variant.value as Record<string, boolean>
     for (const key of verdictKeys(variant.value)) {
@@ -109,7 +125,14 @@ export function score(
   return result
 }
 
-const CURLY = /[“”‘’]/
+const CURLY = /[“”]/
+
+/** A string holding a comma, with another value after it in the same object or array. */
+function commaThenMore(value: unknown): boolean {
+  if (!value || typeof value !== "object") return false
+  const values = Object.values(value)
+  return values.some((v, i) => (typeof v === "string" && v.includes(",") && i < values.length - 1) || commaThenMore(v))
+}
 
 function textOf(value: unknown, out: string[] = []): string[] {
   if (typeof value === "string") out.push(value)

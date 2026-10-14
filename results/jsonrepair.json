@@ -1,6 +1,6 @@
 {
  "library": "jsonrepair 3.15.0",
- "variants": 382689,
+ "variants": 384717,
  "outcomes": {
   "as-sent": {
    "exact": 2028,
@@ -25,6 +25,12 @@
    "refused": 0,
    "dropped": 0,
    "changed": 2028
+  },
+  "prose-inline": {
+   "exact": 0,
+   "refused": 2028,
+   "dropped": 0,
+   "changed": 0
   },
   "trailing-comma": {
    "exact": 2028,
@@ -78,18 +84,20 @@
  "changes": {
   "as-sent": {},
   "cut": {
-   "not the object": 1936,
+   "text, not the object": 968,
    "missing": 168308,
    "extra": 33221,
    "became null": 20845,
    "text cut short": 269946,
    "true, false or null became text": 5602,
+   "an array, not the object": 968,
    "number changed": 109
   },
   "fence": {},
   "prose": {
-   "not the object": 2028
+   "an array, not the object": 2028
   },
+  "prose-inline": {},
   "trailing-comma": {},
   "comment": {},
   "python": {},
@@ -105,7 +113,7 @@
   },
   "missing-comma": {},
   "twice": {
-   "not the object": 2028
+   "an array, not the object": 2028
   }
  },
  "verdicts": {
@@ -199,6 +207,32 @@
     "failReadAsPass": 0,
     "passReadAsFail": 1086,
     "rejected": 0
+   },
+   "zod": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "pydantic": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   }
+  },
+  "prose-inline": {
+   "truthy": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "strict": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
    },
    "zod": {
     "right": 0,
@@ -425,14 +459,14 @@
  "examples": {
   "as-sent": {},
   "cut": {
-   "not the object": [
+   "text, not the object": [
     {
      "reply": "j0001",
      "at": 1,
      "text": "`",
      "got": "\"\"",
      "how": [
-      "$ not the object"
+      "$ text, not the object"
      ]
     },
     {
@@ -441,16 +475,16 @@
      "text": "``",
      "got": "\"\"",
      "how": [
-      "$ not the object"
+      "$ text, not the object"
      ]
     },
     {
-     "reply": "j0001",
-     "at": 239,
-     "text": "```json\n{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\n  \"pass\": true,\n  \"score\": 1.0\n}\n`",
-     "got": "[{\"reason\":\"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\"pass\":true,\"score\":1},\"\"]",
+     "reply": "j0002",
+     "at": 1,
+     "text": "`",
+     "got": "\"\"",
      "how": [
-      "$ not the object"
+      "$ text, not the object"
      ]
     }
    ],
@@ -617,6 +651,35 @@
      ]
     }
    ],
+   "an array, not the object": [
+    {
+     "reply": "j0001",
+     "at": 239,
+     "text": "```json\n{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\n  \"pass\": true,\n  \"score\": 1.0\n}\n`",
+     "got": "[{\"reason\":\"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\"pass\":true,\"score\":1},\"\"]",
+     "how": [
+      "$ an array, not the object"
+     ]
+    },
+    {
+     "reply": "j0001",
+     "at": 240,
+     "text": "```json\n{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\n  \"pass\": true,\n  \"score\": 1.0\n}\n``",
+     "got": "[{\"reason\":\"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\"pass\":true,\"score\":1},\"\"]",
+     "how": [
+      "$ an array, not the object"
+     ]
+    },
+    {
+     "reply": "j0002",
+     "at": 212,
+     "text": "```json\n{\n  \"reason\": \"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.\",\n  \"pass\": false,\n  \"score\": 0.0\n}\n`",
+     "got": "[{\"reason\":\"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.\",\"pass\":false,\"score\":0},\"\"]",
+     "how": [
+      "$ an array, not the object"
+     ]
+    }
+   ],
    "text cut short + extra": [
     {
      "reply": "j0031",
@@ -693,13 +756,13 @@
   },
   "fence": {},
   "prose": {
-   "not the object": [
+   "an array, not the object": [
     {
      "reply": "j0001",
      "text": "Here is my assessment:\n\n{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\n  \"pass\": true,\n  \"score\": 1.0\n}\n\nLet me know if you need anything else.",
      "got": "[\"Here is my assessment:\",{\"reason\":\"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\"pass\":true,\"score\":1},\"Let me know if you need anything else.\"]",
      "how": [
-      "$ not the object"
+      "$ an array, not the object"
      ]
     },
     {
@@ -707,7 +770,7 @@
      "text": "Here is my assessment:\n\n{\n  \"reason\": \"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.\",\n  \"pass\": false,\n  \"score\": 0.0\n}\n\nLet me know if you need anything else.",
      "got": "[\"Here is my assessment:\",{\"reason\":\"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.\",\"pass\":false,\"score\":0},\"Let me know if you need anything else.\"]",
      "how": [
-      "$ not the object"
+      "$ an array, not the object"
      ]
     },
     {
@@ -715,8 +778,30 @@
      "text": "Here is my assessment:\n\n{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion.\",\n  \"pass\": true,\n  \"score\": 1.0\n}\n\nLet me know if you need anything else.",
      "got": "[\"Here is my assessment:\",{\"reason\":\"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion.\",\"pass\":true,\"score\":1},\"Let me know if you need anything else.\"]",
      "how": [
-      "$ not the object"
+      "$ an array, not the object"
      ]
+    }
+   ]
+  },
+  "prose-inline": {
+   "refused": [
+    {
+     "reply": "j0001",
+     "text": "Here is my assessment: { \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\", \"pass\": true, \"score\": 1.0 } Let me know if you need anything else.",
+     "got": "Unexpected character \"{\" at position 23",
+     "how": []
+    },
+    {
+     "reply": "j0002",
+     "text": "Here is my assessment: { \"reason\": \"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.\", \"pass\": false, \"score\": 0.0 } Let me know if you need anything else.",
+     "got": "Unexpected character \"{\" at position 23",
+     "how": []
+    },
+    {
+     "reply": "j0003",
+     "text": "Here is my assessment: { \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion.\", \"pass\": true, \"score\": 1.0 } Let me know if you need anything else.",
+     "got": "Unexpected character \"{\" at position 23",
+     "how": []
     }
    ]
   },
@@ -856,13 +941,13 @@
   },
   "missing-comma": {},
   "twice": {
-   "not the object": [
+   "an array, not the object": [
     {
      "reply": "j0001",
      "text": "{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\n  \"pass\": true,\n  \"score\": 1.0\n}\n{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\n  \"pass\": true,\n  \"score\": 1.0\n}",
      "got": "[{\"reason\":\"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\"pass\":true,\"score\":1},{\"reason\":\"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bow…",
      "how": [
-      "$ not the object"
+      "$ an array, not the object"
      ]
     },
     {
@@ -870,7 +955,7 @@
      "text": "{\n  \"reason\": \"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.\",\n  \"pass\": false,\n  \"score\": 0.0\n}\n{\n  \"reason\": \"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.\",\n  \"pass\": false,\n  \"score\": 0.0\n}",
      "got": "[{\"reason\":\"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.\",\"pass\":false,\"score\":0},{\"reason\":\"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.\",\"pass\":false,\"score\":0}]",
      "how": [
-      "$ not the object"
+      "$ an array, not the object"
      ]
     },
     {
@@ -878,7 +963,7 @@
      "text": "{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion.\",\n  \"pass\": true,\n  \"score\": 1.0\n}\n{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion.\",\n  \"pass\": true,\n  \"score\": 1.0\n}",
      "got": "[{\"reason\":\"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion.\",\"pass\":true,\"score\":1},{\"reason\":\"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion.\",\"pass\":true,\"score\":1}]",
      "how": [
-      "$ not the object"
+      "$ an array, not the object"
      ]
     }
    ]
@@ -886,17 +971,25 @@
  },
  "curlyQuotes": {
   "plain": {
-   "exact": 1814,
+   "exact": 1929,
    "refused": 0,
    "dropped": 0,
    "changed": 0,
    "cutAtComma": 0
   },
   "curly": {
-   "exact": 115,
+   "exact": 0,
    "refused": 53,
    "dropped": 0,
    "changed": 46
+  },
+  "commaThenMore": {
+   "replies": 480,
+   "notExact": 0
+  },
+  "noCommaThenMore": {
+   "replies": 1449,
+   "notExact": 0
   }
  }
 }

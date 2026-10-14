@@ -27,6 +27,7 @@ describe("the breaks", () => {
     const v = byBreak(judge)
     assert.equal(v.get("fence")?.text, '```json\n{"pass": false, "reason": "It names the wrong team, not the Broncos."}\n```')
     assert.equal(v.get("prose")?.text, `Here is my assessment:\n\n${judge.raw}\n\nLet me know if you need anything else.`)
+    assert.equal(v.get("prose-inline")?.text, `Here is my assessment: ${judge.raw} Let me know if you need anything else.`)
     assert.equal(v.get("trailing-comma")?.text, '{"pass": false, "reason": "It names the wrong team, not the Broncos.",}')
     assert.equal(v.get("comment")?.text, '{\n  "pass": false, // as the reply says\n  "reason": "It names the wrong team, not the Broncos."\n}')
     assert.equal(v.get("python")?.text, "{'pass': False, 'reason': 'It names the wrong team, not the Broncos.'}")
@@ -52,6 +53,9 @@ describe("the breaks", () => {
     assert.equal(v.has("fence"), false)
     assert.equal(v.get("as-sent")?.text, fenced.raw)
     assert.equal(v.get("prose")?.text, `Here is my assessment:\n\n${judge.raw}\n\nLet me know if you need anything else.`)
+    // A fenced reply is pretty-printed: on one line, its own line breaks become spaces.
+    const pretty: Reply = { ...judge, raw: "```json\n{\n  \"pass\": false\n}\n```", value: { pass: false } }
+    assert.equal(byBreak(pretty).get("prose-inline")?.text, 'Here is my assessment: { "pass": false } Let me know if you need anything else.')
   })
 
   it("leave the recorded reply untouched", () => {
