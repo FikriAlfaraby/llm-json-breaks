@@ -1,0 +1,908 @@
+{
+ "library": "json_repair 0.64.0, strict=True",
+ "variants": 382689,
+ "outcomes": {
+  "as-sent": {
+   "exact": 1544,
+   "refused": 484,
+   "dropped": 0,
+   "changed": 0
+  },
+  "cut": {
+   "exact": 5897,
+   "refused": 28876,
+   "dropped": 45680,
+   "changed": 280545
+  },
+  "fence": {
+   "exact": 0,
+   "refused": 1544,
+   "dropped": 0,
+   "changed": 0
+  },
+  "prose": {
+   "exact": 0,
+   "refused": 2028,
+   "dropped": 0,
+   "changed": 0
+  },
+  "trailing-comma": {
+   "exact": 2028,
+   "refused": 0,
+   "dropped": 0,
+   "changed": 0
+  },
+  "comment": {
+   "exact": 2028,
+   "refused": 0,
+   "dropped": 0,
+   "changed": 0
+  },
+  "python": {
+   "exact": 2028,
+   "refused": 0,
+   "dropped": 0,
+   "changed": 0
+  },
+  "smart-quotes": {
+   "exact": 1460,
+   "refused": 32,
+   "dropped": 0,
+   "changed": 536
+  },
+  "raw-newline": {
+   "exact": 1964,
+   "refused": 0,
+   "dropped": 0,
+   "changed": 0
+  },
+  "inner-quotes": {
+   "exact": 1847,
+   "refused": 3,
+   "dropped": 0,
+   "changed": 109
+  },
+  "missing-comma": {
+   "exact": 2028,
+   "refused": 0,
+   "dropped": 0,
+   "changed": 0
+  },
+  "twice": {
+   "exact": 0,
+   "refused": 2028,
+   "dropped": 0,
+   "changed": 0
+  }
+ },
+ "changes": {
+  "as-sent": {},
+  "cut": {
+   "not the object": 3872,
+   "missing": 148756,
+   "text cut short": 270916,
+   "true, false or null became text": 5602,
+   "text changed": 46,
+   "number changed": 109
+  },
+  "fence": {},
+  "prose": {},
+  "trailing-comma": {},
+  "comment": {},
+  "python": {},
+  "smart-quotes": {
+   "text cut short": 512,
+   "text changed": 24,
+   "extra": 12,
+   "missing": 10
+  },
+  "raw-newline": {},
+  "inner-quotes": {
+   "text cut short": 109,
+   "missing": 45,
+   "extra": 45
+  },
+  "missing-comma": {},
+  "twice": {}
+ },
+ "verdicts": {
+  "as-sent": {
+   "truthy": {
+    "right": 1273,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 324
+   },
+   "strict": {
+    "right": 1273,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 324
+   },
+   "zod": {
+    "right": 1273,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 324
+   },
+   "pydantic": {
+    "right": 1273,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 324
+   }
+  },
+  "cut": {
+   "truthy": {
+    "right": 142686,
+    "failReadAsPass": 2044,
+    "passReadAsFail": 71377,
+    "rejected": 17196
+   },
+   "strict": {
+    "right": 141472,
+    "failReadAsPass": 0,
+    "passReadAsFail": 74635,
+    "rejected": 17196
+   },
+   "zod": {
+    "right": 104863,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 128440
+   },
+   "pydantic": {
+    "right": 106460,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 126843
+   }
+  },
+  "fence": {
+   "truthy": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1273
+   },
+   "strict": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1273
+   },
+   "zod": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1273
+   },
+   "pydantic": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1273
+   }
+  },
+  "prose": {
+   "truthy": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "strict": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "zod": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "pydantic": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   }
+  },
+  "trailing-comma": {
+   "truthy": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "strict": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "zod": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "pydantic": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   }
+  },
+  "comment": {
+   "truthy": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "strict": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "zod": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "pydantic": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   }
+  },
+  "python": {
+   "truthy": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "strict": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "zod": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "pydantic": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   }
+  },
+  "smart-quotes": {
+   "truthy": {
+    "right": 1568,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 29
+   },
+   "strict": {
+    "right": 1568,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 29
+   },
+   "zod": {
+    "right": 1567,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 30
+   },
+   "pydantic": {
+    "right": 1567,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 30
+   }
+  },
+  "raw-newline": {
+   "truthy": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "strict": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "zod": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "pydantic": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   }
+  },
+  "inner-quotes": {
+   "truthy": {
+    "right": 1578,
+    "failReadAsPass": 0,
+    "passReadAsFail": 17,
+    "rejected": 2
+   },
+   "strict": {
+    "right": 1578,
+    "failReadAsPass": 0,
+    "passReadAsFail": 17,
+    "rejected": 2
+   },
+   "zod": {
+    "right": 1550,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 47
+   },
+   "pydantic": {
+    "right": 1550,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 47
+   }
+  },
+  "missing-comma": {
+   "truthy": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "strict": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "zod": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "pydantic": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   }
+  },
+  "twice": {
+   "truthy": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "strict": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "zod": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "pydantic": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   }
+  }
+ },
+ "examples": {
+  "as-sent": {
+   "refused": [
+    {
+     "reply": "j0001",
+     "text": "```json\n{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\n  \"pass\": true,\n  \"score\": 1.0\n}\n```",
+     "got": "ValueError: Multiple top-level JSON elements found in strict mode.",
+     "how": []
+    },
+    {
+     "reply": "j0002",
+     "text": "```json\n{\n  \"reason\": \"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.\",\n  \"pass\": false,\n  \"score\": 0.0\n}\n```",
+     "got": "ValueError: Multiple top-level JSON elements found in strict mode.",
+     "how": []
+    },
+    {
+     "reply": "j0003",
+     "text": "```json\n{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion.\",\n  \"pass\": true,\n  \"score\": 1.0\n}\n```",
+     "got": "ValueError: Multiple top-level JSON elements found in strict mode.",
+     "how": []
+    }
+   ]
+  },
+  "cut": {
+   "not the object": [
+    {
+     "reply": "j0001",
+     "at": 1,
+     "text": "`",
+     "got": "\"\"",
+     "how": [
+      "$ not the object"
+     ]
+    },
+    {
+     "reply": "j0001",
+     "at": 2,
+     "text": "``",
+     "got": "\"\"",
+     "how": [
+      "$ not the object"
+     ]
+    },
+    {
+     "reply": "j0001",
+     "at": 3,
+     "text": "```",
+     "got": "\"\"",
+     "how": [
+      "$ not the object"
+     ]
+    }
+   ],
+   "refused": [
+    {
+     "reply": "j0001",
+     "at": 11,
+     "text": "```json\n{\n ",
+     "got": "ValueError: Parsed object is empty but contains extra characters in strict mode.",
+     "how": []
+    },
+    {
+     "reply": "j0001",
+     "at": 12,
+     "text": "```json\n{\n  ",
+     "got": "ValueError: Parsed object is empty but contains extra characters in strict mode.",
+     "how": []
+    },
+    {
+     "reply": "j0001",
+     "at": 13,
+     "text": "```json\n{\n  \"",
+     "got": "ValueError: Parsed object is empty but contains extra characters in strict mode.",
+     "how": []
+    }
+   ],
+   "text cut short": [
+    {
+     "reply": "j0001",
+     "at": 23,
+     "text": "```json\n{\n  \"reason\": \"",
+     "got": "{\"reason\":\"\"}",
+     "how": [
+      "$.reason text cut short",
+      "$.pass missing",
+      "$.score missing"
+     ]
+    },
+    {
+     "reply": "j0001",
+     "at": 24,
+     "text": "```json\n{\n  \"reason\": \"T",
+     "got": "{\"reason\":\"T\"}",
+     "how": [
+      "$.reason text cut short",
+      "$.pass missing",
+      "$.score missing"
+     ]
+    },
+    {
+     "reply": "j0001",
+     "at": 25,
+     "text": "```json\n{\n  \"reason\": \"Th",
+     "got": "{\"reason\":\"Th\"}",
+     "how": [
+      "$.reason text cut short",
+      "$.pass missing",
+      "$.score missing"
+     ]
+    }
+   ],
+   "true, false or null became text": [
+    {
+     "reply": "j0001",
+     "at": 216,
+     "text": "```json\n{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\n  \"pass\": t",
+     "got": "{\"reason\":\"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\"pass\":\"t\"}",
+     "how": [
+      "$.pass true, false or null became text",
+      "$.score missing"
+     ]
+    },
+    {
+     "reply": "j0001",
+     "at": 217,
+     "text": "```json\n{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\n  \"pass\": tr",
+     "got": "{\"reason\":\"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\"pass\":\"tr\"}",
+     "how": [
+      "$.pass true, false or null became text",
+      "$.score missing"
+     ]
+    },
+    {
+     "reply": "j0001",
+     "at": 218,
+     "text": "```json\n{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\n  \"pass\": tru",
+     "got": "{\"reason\":\"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\"pass\":\"tru\"}",
+     "how": [
+      "$.pass true, false or null became text",
+      "$.score missing"
+     ]
+    }
+   ],
+   "text changed": [
+    {
+     "reply": "j0005",
+     "at": 63,
+     "text": "```json\n{\"reason\": \"The output explicitly states that Maria Sk\\",
+     "got": "{\"reason\":\"The output explicitly states that Maria Sk\\\\\"}",
+     "how": [
+      "$.reason text changed",
+      "$.pass missing",
+      "$.score missing"
+     ]
+    },
+    {
+     "reply": "j0005",
+     "at": 64,
+     "text": "```json\n{\"reason\": \"The output explicitly states that Maria Sk\\u",
+     "got": "{\"reason\":\"The output explicitly states that Maria Sk\\\\u\"}",
+     "how": [
+      "$.reason text changed",
+      "$.pass missing",
+      "$.score missing"
+     ]
+    },
+    {
+     "reply": "j0005",
+     "at": 65,
+     "text": "```json\n{\"reason\": \"The output explicitly states that Maria Sk\\u0",
+     "got": "{\"reason\":\"The output explicitly states that Maria Sk\\\\u0\"}",
+     "how": [
+      "$.reason text changed",
+      "$.pass missing",
+      "$.score missing"
+     ]
+    }
+   ],
+   "number changed": [
+    {
+     "reply": "j1553",
+     "at": 211,
+     "text": "{\"reason\":\"It identifies southern France, but says the population was centered in central France rather than the commonly cited western regions, so the location is only partially correct.\",\"pass\":false,\"score\":0",
+     "got": "{\"reason\":\"It identifies southern France, but says the population was centered in central France rather than the commonly cited western regions, so the location is only partially correct.\",\"pass\":false,\"score\":0}",
+     "how": [
+      "$.score number changed"
+     ]
+    },
+    {
+     "reply": "j1553",
+     "at": 212,
+     "text": "{\"reason\":\"It identifies southern France, but says the population was centered in central France rather than the commonly cited western regions, so the location is only partially correct.\",\"pass\":false,\"score\":0.",
+     "got": "{\"reason\":\"It identifies southern France, but says the population was centered in central France rather than the commonly cited western regions, so the location is only partially correct.\",\"pass\":false,\"score\":0}",
+     "how": [
+      "$.score number changed"
+     ]
+    },
+    {
+     "reply": "x0002",
+     "at": 33,
+     "text": "{\n  \"budgetIDR\": {\n    \"value\": 1",
+     "got": "{\"budgetIDR\":{\"value\":1}}",
+     "how": [
+      "$.budgetIDR.value number changed",
+      "$.budgetIDR.citation missing",
+      "$.areas missing",
+      "$.intent missing",
+      "$.urgency missing",
+      "$.propertyType missing",
+      "$.timeline missing"
+     ]
+    }
+   ]
+  },
+  "fence": {
+   "refused": [
+    {
+     "reply": "j0012",
+     "text": "```json\n{\"reason\": \"The output explicitly mentions that Normandy is 'a region in France', correctly answering what country it is located in.\", \"pass\": true, \"score\": 1.0}\n```",
+     "got": "ValueError: Multiple top-level JSON elements found in strict mode.",
+     "how": []
+    },
+    {
+     "reply": "j0067",
+     "text": "```json\n{\"reason\": \"The output explicitly states that Ctenophora are 'commonly known as comb jellies', correctly answering the question.\", \"pass\": true, \"score\": 1.0}\n```",
+     "got": "ValueError: Multiple top-level JSON elements found in strict mode.",
+     "how": []
+    },
+    {
+     "reply": "j0097",
+     "text": "```json\n{\"reason\": \"The output correctly identifies 'civil disobedience' as a term for when people rebel against laws they consider unfair.\", \"pass\": true, \"score\": 1.0}\n```",
+     "got": "ValueError: Multiple top-level JSON elements found in strict mode.",
+     "how": []
+    }
+   ]
+  },
+  "prose": {
+   "refused": [
+    {
+     "reply": "j0001",
+     "text": "Here is my assessment:\n\n{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\n  \"pass\": true,\n  \"score\": 1.0\n}\n\nLet me know if you need anything else.",
+     "got": "ValueError: Multiple top-level JSON elements found in strict mode.",
+     "how": []
+    },
+    {
+     "reply": "j0002",
+     "text": "Here is my assessment:\n\n{\n  \"reason\": \"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.\",\n  \"pass\": false,\n  \"score\": 0.0\n}\n\nLet me know if you need anything else.",
+     "got": "ValueError: Multiple top-level JSON elements found in strict mode.",
+     "how": []
+    },
+    {
+     "reply": "j0003",
+     "text": "Here is my assessment:\n\n{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion.\",\n  \"pass\": true,\n  \"score\": 1.0\n}\n\nLet me know if you need anything else.",
+     "got": "ValueError: Multiple top-level JSON elements found in strict mode.",
+     "how": []
+    }
+   ]
+  },
+  "trailing-comma": {},
+  "comment": {},
+  "python": {},
+  "smart-quotes": {
+   "text cut short": [
+    {
+     "reply": "j0002",
+     "text": "{“reason”: “The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.”, “pass”: false, “score”: 0}",
+     "got": "{\"reason\":\"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50\",\"pass\":false,\"score\":0}",
+     "how": [
+      "$.reason text cut short"
+     ]
+    },
+    {
+     "reply": "j0006",
+     "text": "{“reason”: “The output incorrectly states that Maria Skłodowska-Curie 'was not the first female recipient of the Nobel Prize', failing to correctly answer what she was the first female recipient of.”, “pass”: false, “score”: 0}",
+     "got": "{\"reason\":\"The output incorrectly states that Maria Skłodowska-Curie 'was not the first female recipient of the Nobel Prize'\",\"pass\":false,\"score\":0}",
+     "how": [
+      "$.reason text cut short"
+     ]
+    },
+    {
+     "reply": "j0007",
+     "text": "{“reason”: “The output incorrectly states that Marie Curie was the first female recipient of the Pulitzer Prize, whereas she was actually the first female recipient of the Nobel Prize.”, “pass”: false, “score”: 0}",
+     "got": "{\"reason\":\"The output incorrectly states that Marie Curie was the first female recipient of the Pulitzer Prize\",\"pass\":false,\"score\":0}",
+     "how": [
+      "$.reason text cut short"
+     ]
+    }
+   ],
+   "refused": [
+    {
+     "reply": "j0190",
+     "text": "{“reason”: “The output says Southern California is abbreviated as “NorCal,” but it is commonly abbreviated as “SoCal.””, “pass”: false, “score”: 0}",
+     "got": "ValueError: Missing ':' after key in strict mode while parsing object.",
+     "how": []
+    },
+    {
+     "reply": "j0219",
+     "text": "{“reason”: “The output identifies “Amazonia” and “the Amazon Jungle” as English names for the Amazon rainforest.”, “pass”: true, “score”: 1}",
+     "got": "ValueError: Missing ':' after key in strict mode while parsing object.",
+     "how": []
+    },
+    {
+     "reply": "j0220",
+     "text": "{“reason”: “The output identifies “Amazonia” and “the Amazon Jungle” as English names for the Amazon rainforest, so it answers the question correctly.”, “pass”: true, “score”: 1}",
+     "got": "ValueError: Missing ':' after key in strict mode while parsing object.",
+     "how": []
+    }
+   ],
+   "text changed": [
+    {
+     "reply": "j0521",
+     "text": "{“pass”: true, “reason”: ““Amazonia” and “the Amazon Jungle” are both names also used in English for the Amazon rainforest.”}",
+     "got": "{\"pass\":true,\"reason\":\"Amazonia\"}",
+     "how": [
+      "$.reason text changed"
+     ]
+    },
+    {
+     "reply": "j0523",
+     "text": "{“pass”: true, “reason”: ““Amazonia” and “the Amazon Jungle” are both names used in English for the Amazon rainforest.”}",
+     "got": "{\"pass\":true,\"reason\":\"Amazonia\"}",
+     "how": [
+      "$.reason text changed"
+     ]
+    },
+    {
+     "reply": "j0538",
+     "text": "{“pass”: false, “reason”: “The Walt Disney Company owns ABC, but the answer gives outdated subsidiary and division names and incorrectly says the “abc” logo dates from 1957.”}",
+     "got": "{\"pass\":false,\"reason\":\"The Walt Disney Company owns ABC, but the answer gives outdated subsidiary and division names and incorrectly says the “abc” logo dates from 1957.”\"}",
+     "how": [
+      "$.reason text changed"
+     ]
+    }
+   ],
+   "text cut short + extra": [
+    {
+     "reply": "j0806",
+     "text": "{“category”: “B”, “reason”: “The submitted answer includes the expert answer, “Computational complexity theory,” and adds a consistent description of its scope: classifying computational problems by difficulty and relating problem classes to one another. It adds detail without contradicting the expert answer.”}",
+     "got": "{\"category\":\"B\",\"reason\":\"The submitted answer includes the expert answer, “Computational complexity theory,\",\"scope\":\"classifying computational problems by difficulty and relating problem classes to one another. It adds detail without contradicting the expert answer.”\"}",
+     "how": [
+      "$.reason text cut short",
+      "$.scope extra"
+     ]
+    },
+    {
+     "reply": "j0807",
+     "text": "{“category”: “B”, “reason”: “The submitted answer includes the expert answer, “computational complexity theory,” and adds consistent details: that it is a branch of theoretical computer science concerned with classifying computational problems by difficulty and relating those classes to one another. The extra information does not conflict with the expert answer.”}",
+     "got": "{\"category\":\"B\",\"reason\":\"The submitted answer includes the expert answer, “computational complexity theory,\",\"details\":\"that it is a branch of theoretical computer science concerned with classifying computational problems by difficulty and relating those classes to one another. The extra information does not conflict with the expert answer.”\"}",
+     "how": [
+      "$.reason text cut short",
+      "$.details extra"
+     ]
+    },
+    {
+     "reply": "j1510",
+     "text": "{“reason”: “The output says Maria Curie was not the first female recipient of the Nobel Prize, contradicting the correct answer: she was the first female Nobel Prize recipient.”, “pass”: false, “score”: 0}",
+     "got": "{\"reason\":\"The output says Maria Curie was not the first female recipient of the Nobel Prize\",\"answer\":\"she was the first female Nobel Prize recipient.”, “pass”: false, “score”: 0\"}",
+     "how": [
+      "$.reason text cut short",
+      "$.pass missing",
+      "$.score missing",
+      "$.answer extra"
+     ]
+    }
+   ]
+  },
+  "raw-newline": {},
+  "inner-quotes": {
+   "text cut short + extra": [
+    {
+     "reply": "j0013",
+     "text": "{\"reason\":\"The output explicitly mentions Tesla's birth date as 10 July \"1856,\" correctly answering the question of what year he was born.\",\"pass\":true,\"score\":1}",
+     "got": "{\"reason\":\"The output explicitly mentions Tesla's birth date as 10 July \",\"born.\\\",\\\"pass\":true,\"score\":1}",
+     "how": [
+      "$.reason text cut short",
+      "$.pass missing",
+      "$.born.\",\"pass extra"
+     ]
+    },
+    {
+     "reply": "j0047",
+     "text": "{\"reason\":\"The output states that oxygen has an atomic number of \"9,\" but the correct atomic number for oxygen is 8.\",\"pass\":false,\"score\":0}",
+     "got": "{\"reason\":\"The output states that oxygen has an atomic number of \",\"8.\\\",\\\"pass\":false,\"score\":0}",
+     "how": [
+      "$.reason text cut short",
+      "$.pass missing",
+      "$.8.\",\"pass extra"
+     ]
+    },
+    {
+     "reply": "j0060",
+     "text": "{\"reason\":\"The output states that the three sources of European Union law are 'not' primary \"law,\" secondary law, and supplementary law, thereby failing to correctly identify the three sources.\",\"pass\":false,\"score\":0}",
+     "got": "{\"reason\":\"The output states that the three sources of European Union law are 'not' primary \\\"law,\",\"sources.\\\",\\\"pass\":false,\"score\":0}",
+     "how": [
+      "$.reason text cut short",
+      "$.pass missing",
+      "$.sources.\",\"pass extra"
+     ]
+    }
+   ],
+   "text cut short": [
+    {
+     "reply": "j0332",
+     "text": "{\"pass\":false,\"reason\":\"Martin Luther was \"German,\" not Austrian.\"}",
+     "got": "{\"pass\":false,\"reason\":\"Martin Luther was \\\"German,\"}",
+     "how": [
+      "$.reason text cut short"
+     ]
+    },
+    {
+     "reply": "j0344",
+     "text": "{\"pass\":false,\"reason\":\"The economy of Victoria is considered highly diversified, not poorly \"diversified,\" as demonstrated by the diverse range of sectors listed.\"}",
+     "got": "{\"pass\":false,\"reason\":\"The economy of Victoria is considered highly diversified, not poorly \\\"diversified,\"}",
+     "how": [
+      "$.reason text cut short"
+     ]
+    },
+    {
+     "reply": "j0345",
+     "text": "{\"pass\":true,\"reason\":\"The answer accurately describes Victoria's \"diversified,\" service- and manufacturing-based economy.\"}",
+     "got": "{\"pass\":true,\"reason\":\"The answer accurately describes Victoria's \\\"diversified,\"}",
+     "how": [
+      "$.reason text cut short"
+     ]
+    }
+   ],
+   "refused": [
+    {
+     "reply": "j0604",
+     "text": "{\"pass\":false,\"reason\":\"The word derives from Latin imperium, but imperium means \"authority,\" command, or sovereignty—not specifically “to rule over large territories.”\"}",
+     "got": "ValueError: Missing ':' after key in strict mode while parsing object.",
+     "how": []
+    },
+    {
+     "reply": "j0714",
+     "text": "{\"category\":\"C\",\"reason\":\"The submitted answer contains all the exact same details as the expert \"answer,\" merely stating it as a complete sentence with 'The immune system is'.\"}",
+     "got": "ValueError: Missing ':' after key in strict mode while parsing object.",
+     "how": []
+    },
+    {
+     "reply": "j0987",
+     "text": "{\"reason\":\"The output states that 'Freesat' was formed by the \"merger,\" instead of the correct answer, 'BSkyB' (British Sky Broadcasting).\",\"pass\":false,\"score\":0}",
+     "got": "ValueError: Missing ':' after key in strict mode while parsing object.",
+     "how": []
+    }
+   ]
+  },
+  "missing-comma": {},
+  "twice": {
+   "refused": [
+    {
+     "reply": "j0001",
+     "text": "{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\n  \"pass\": true,\n  \"score\": 1.0\n}\n{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\n  \"pass\": true,\n  \"score\": 1.0\n}",
+     "got": "ValueError: Multiple top-level JSON elements found in strict mode.",
+     "how": []
+    },
+    {
+     "reply": "j0002",
+     "text": "{\n  \"reason\": \"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.\",\n  \"pass\": false,\n  \"score\": 0.0\n}\n{\n  \"reason\": \"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.\",\n  \"pass\": false,\n  \"score\": 0.0\n}",
+     "got": "ValueError: Multiple top-level JSON elements found in strict mode.",
+     "how": []
+    },
+    {
+     "reply": "j0003",
+     "text": "{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion.\",\n  \"pass\": true,\n  \"score\": 1.0\n}\n{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion.\",\n  \"pass\": true,\n  \"score\": 1.0\n}",
+     "got": "ValueError: Multiple top-level JSON elements found in strict mode.",
+     "how": []
+    }
+   ]
+  }
+ },
+ "curlyQuotes": {
+  "plain": {
+   "exact": 1358,
+   "refused": 0,
+   "dropped": 0,
+   "changed": 456,
+   "cutAtComma": 446
+  },
+  "curly": {
+   "exact": 102,
+   "refused": 32,
+   "dropped": 0,
+   "changed": 80
+  }
+ }
+}

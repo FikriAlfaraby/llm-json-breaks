@@ -87,8 +87,15 @@ export const READERS = {
   truthy: (value: unknown, key: string): Reading => Boolean(isObject(value) ? value[key] : undefined),
   strict: (value: unknown, key: string): Reading => isObject(value) && value[key] === true,
   zod: (value: unknown, key: string): Reading => {
-    const read = z.object({ [key]: z.boolean() }).safeParse(value)
+    const read = schemaFor(key).safeParse(value)
     return read.success ? (read.data[key] as boolean) : "rejected"
   },
 } as const
+
+const schemas = new Map<string, z.ZodType<Record<string, boolean>>>()
+function schemaFor(key: string): z.ZodType<Record<string, boolean>> {
+  let schema = schemas.get(key)
+  if (!schema) schemas.set(key, (schema = z.object({ [key]: z.boolean() })))
+  return schema
+}
 export type Reader = keyof typeof READERS | "pydantic"
