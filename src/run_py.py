@@ -2,11 +2,14 @@
 
     .venv/bin/python src/run_py.py
 
-Reads .cache/variants.jsonl (written by scripts/run.ts) and .cache/jsonrepair.jsonl. Writes, one
-line per variant:
-  .cache/json_repair.jsonl         json_repair.loads(text)
-  .cache/json_repair-strict.jsonl  json_repair.loads(text, strict=True)
-  .cache/pydantic-<library>.jsonl  how a pydantic model with boolean fields reads each verdict
+Reads .cache/variants.jsonl and the JavaScript libraries' results (written by scripts/run.ts).
+Writes, one line per variant:
+  .cache/json_repair.jsonl             json_repair.loads(text)
+  .cache/json_repair-strict.jsonl      json_repair.loads(text, strict=True)
+  .cache/jiter-on.jsonl                jiter.from_json(text, partial_mode="on")
+  .cache/jiter-trailing-strings.jsonl  jiter.from_json(text, partial_mode="trailing-strings")
+  .cache/langchain-py.jsonl            langchain_core.utils.json.parse_partial_json(text)
+  .cache/pydantic-<library>.jsonl      how a pydantic model with boolean fields reads each verdict
 """
 
 from __future__ import annotations
@@ -17,17 +20,29 @@ import time
 from functools import lru_cache
 from pathlib import Path
 
+import jiter
 import json_repair
+from langchain_core.utils.json import parse_partial_json
 from pydantic import Field, ValidationError, create_model
 
 CACHE = Path(__file__).resolve().parent.parent / ".cache"
+JS_LIBRARIES = ["jsonrepair", "ai-sdk", "partial-json", "langchain-js", "anthropic-sdk", "openai-sdk"]
+PYTHON_LIBRARIES = {
+    "json_repair": lambda text: json_repair.loads(text),
+    "json_repair-strict": lambda text: json_repair.loads(text, strict=True),
+    "jiter-on": lambda text: jiter.from_json(text.encode(), partial_mode="on"),
+    "jiter-trailing-strings": lambda text: jiter.from_json(text.encode(), partial_mode="trailing-strings"),
+    "langchain-py": parse_partial_json,
+}
 
 
-def repair(text: str, strict: bool) -> dict:
+def repair(text: str, parse) -> dict:
     try:
-        value = json_repair.loads(text, strict=strict)
+        value = parse(text)
     except Exception as error:  # the library refused: the caller would see this
         return {"ok": False, "error": f"{type(error).__name__}: {error}"[:200]}
+    if value is None:  # langchain-core's way of saying it could not read the text
+        return {"ok": False, "error": "returned None"}
     try:
         json.dumps(value, allow_nan=False)
     except (TypeError, ValueError) as error:
@@ -56,15 +71,15 @@ def pydantic_reading(value: object, keys: list[str]) -> dict:
 def main() -> None:
     variants = [json.loads(line) for line in (CACHE / "variants.jsonl").read_text(encoding="utf-8").splitlines()]
     results: dict[str, list[dict]] = {}
-    for name, strict in (("json_repair", False), ("json_repair-strict", True)):
+    for name, parse in PYTHON_LIBRARIES.items():
         started = time.perf_counter()
-        results[name] = [{"i": v["i"], **repair(v["text"], strict)} for v in variants]
+        results[name] = [{"i": v["i"], **repair(v["text"], parse)} for v in variants]
         print(f"{name}: {len(variants)} variants in {time.perf_counter() - started:.1f} s", file=sys.stderr)
-    results["jsonrepair"] = [json.loads(line) for line in (CACHE / "jsonrepair.jsonl").read_text(encoding="utf-8").splitlines()]
+        (CACHE / f"{name}.jsonl").write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in results[name]), encoding="utf-8")
+    for name in JS_LIBRARIES:
+        results[name] = [json.loads(line) for line in (CACHE / f"{name}.jsonl").read_text(encoding="utf-8").splitlines()]
 
     for name, rows in results.items():
-        if name != "jsonrepair":
-            (CACHE / f"{name}.jsonl").write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8")
         readings = []
         for v, r in zip(variants, rows):
             if r["i"] != v["i"]:

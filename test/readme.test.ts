@@ -93,3 +93,58 @@ describe("the README", () => {
     says("Four were wrong in part")
   })
 })
+
+describe("the README on streaming parsers", () => {
+  const STREAMING = {
+    "ai-sdk": "| Vercel AI SDK, `parsePartialJson` | finished as `false` | kept: 15 for 1,500,000,000 | kept, cut short | `repaired-parse` | fails on every cut |",
+    "partial-json": "| partial-json | finished | kept | kept | no | fails |",
+    "langchain-js": "| LangChain JS, `parsePartialJson` | finished | kept | kept | no | fails |",
+    "openai-sdk": "| OpenAI SDK's parser | finished | left out | kept | no | fails |",
+    "anthropic-sdk": "| Anthropic SDK's parser | left out | left out | left out | no | reads through it |",
+    "jiter-on": '| jiter, `partial_mode="on"` | left out | kept | left out | no | fails |',
+    "jiter-trailing-strings": '| jiter, `"trailing-strings"` | left out | kept | kept | no | fails |',
+    "langchain-py": "| langchain-core (Python) | left out | kept | kept | no | fails |",
+  } as const
+  const fenced = replies.filter((r) => r.raw !== unfence(r.raw))
+  const fencedCuts = variants.filter((v) => v.break === "cut" && fenced.some((r) => r.id === v.reply)).length
+
+  it("has one table row per parser, and each cell follows from that parser's results", () => {
+    says(`same ${n(count("cut"))} cut points through seven of these parsers, jiter in two modes: eight settings`)
+    for (const [library, row] of Object.entries(STREAMING)) {
+      says(row)
+      const r = published(library)
+      const cells = row.split(" | ").slice(1).map((c) => c.replace(/ \|$/, ""))
+      const [falseCell = "", numberCell = "", textCell = "", saysCell = "", fenceCell = ""] = cells
+      const lit = r.literalCuts
+      assert.equal(lit.text, 0, `${library} returns no cut true/false as text`)
+      if (falseCell.startsWith("finished")) assert.ok(lit.finished > 0 && lit.leftOut === 0, library)
+      else assert.ok(falseCell === "left out" && lit.leftOut > 0 && lit.finished === 0, library)
+      const numbers = Object.values(r.numbersCut).reduce((a, x) => a + x, 0)
+      assert.equal(numberCell.startsWith("kept"), numbers > 0, `${library} cut numbers`)
+      assert.equal(textCell.startsWith("kept"), (r.changes.cut["text cut short"] ?? 0) > 0, `${library} cut text`)
+      assert.equal(saysCell !== "no", r.states !== undefined, `${library} says it guessed`)
+      if (fenceCell.startsWith("fails")) assert.equal(r.cutFenced.refused, fencedCuts, library)
+      else assert.equal(r.cutFenced.refused, 8 * fenced.length, `${library} refuses only inside the opening fence`)
+    }
+  })
+
+  it("quotes the bullets under the table", () => {
+    const literals = jr.literalCuts.finished + jr.literalCuts.leftOut + jr.literalCuts.text + jr.literalCuts.other + jr.literalCuts.refused
+    for (const r of [jr, py]) assert.equal(r.literalCuts.text, literals)
+    says(`Of ${n(literals)} cut points inside a top-level \`true\` or \`false\`, no streaming parser returned the fragment as text; both repair libraries returned all ${n(literals)} as text`)
+    const ai = published("ai-sdk")
+    const budgets = replies.filter((r) => typeof (r.value as { budgetIDR?: { value?: unknown } }).budgetIDR?.value === "number").length
+    says(`${n(ai.numbersCut["$.budgetIDR.value"] ?? 0)} cut points inside the ${n(budgets)} budgets`)
+    const anthropic = published("anthropic-sdk")
+    assert.equal(anthropic.outcomes.cut.changed, 0)
+    says(`${n(anthropic.outcomes.cut.dropped)} cut points with fields left out, none with a wrong value`)
+    const read = count("cut") - ai.outcomes.cut.refused
+    assert.equal(ai.states?.cut?.["repaired-parse"], read)
+    assert.equal(ai.states?.cut?.["successful-parse"], undefined)
+    says(`\`repaired-parse\` on all ${n(read)} cuts it could read`)
+    says(`failed on every cut, ${n(fencedCuts)} cut points, and on the finished reply`)
+    says("refused only the 8 cut points before each reply's opening brace")
+    says(`on unescaped inner quotes it changed ${n(anthropic.outcomes["inner-quotes"].changed)} replies`)
+    assert.equal(ai.outcomes["as-sent"].refused, fenced.length)
+  })
+})

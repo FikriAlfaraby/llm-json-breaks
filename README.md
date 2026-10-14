@@ -1,7 +1,7 @@
 # llm-json-breaks
 
-**2,028 real LLM replies, broken the ways replies break, and what JSON repair libraries hand
-back.**
+**2,028 real LLM replies, broken the ways replies break, and what JSON repair libraries and
+streaming parsers hand back.**
 
 When a model's JSON reply arrives broken, a repair library makes it parse again:
 [jsonrepair](https://github.com/josdejong/jsonrepair) in JavaScript,
@@ -87,6 +87,40 @@ Added after the run, when a review pointed out that one wrapper does not stand f
 sentences on the JSON's own line. The curly-quote split counts only curly double quotes, the
 marks that look like the delimiters.
 
+## While a reply streams (v0.2)
+
+15 October 2026. Apps that show a reply while it streams parse the unfinished JSON as it grows.
+The Anthropic TypeScript SDK builds a streamed tool call's input with its own parser when you read
+it, and the OpenAI SDK's `chat.completions.stream` parses a json_schema reply with its own. The
+same 360,998 cut points through seven of these parsers, jiter in two modes: eight settings. All
+six predictions, tagged before the run, held.
+
+| Parser | A cut `false` | A cut number | Cut text | Says it guessed | A fenced reply |
+|---|---|---|---|---|---|
+| Vercel AI SDK, `parsePartialJson` | finished as `false` | kept: 15 for 1,500,000,000 | kept, cut short | `repaired-parse` | fails on every cut |
+| partial-json | finished | kept | kept | no | fails |
+| LangChain JS, `parsePartialJson` | finished | kept | kept | no | fails |
+| OpenAI SDK's parser | finished | left out | kept | no | fails |
+| Anthropic SDK's parser | left out | left out | left out | no | reads through it |
+| jiter, `partial_mode="on"` | left out | kept | left out | no | fails |
+| jiter, `"trailing-strings"` | left out | kept | kept | no | fails |
+| langchain-core (Python) | left out | kept | kept | no | fails |
+
+1. **None reads a cut fail as a pass.** Of 5,302 cut points inside a top-level `true` or
+   `false`, no streaming parser returned the fragment as text; both repair libraries returned all
+   5,302 as text.
+2. **Most show a cut number as if it were whole.** A lead's budget of 1,500,000,000 cut after
+   `15` reads 15 in the AI SDK, partial-json, LangChain and jiter: 107 cut points inside the 13
+   budgets. The parsers inside the Anthropic and OpenAI SDKs leave an unfinished number out.
+3. **On a cut, the Anthropic SDK's parser never returned a changed value.** It leaves out
+   everything unfinished: 353,344 cut points with fields left out, none with a wrong value. (It
+   is not a repair library: on unescaped inner quotes it changed 971 replies.)
+4. **Only the AI SDK says it guessed:** `repaired-parse` on all 255,969 cuts it could read. The
+   others return a cut reply the way they return a whole one.
+5. **A fenced reply stops all but one.** On Gemini's 484 fenced replies, every parser except the
+   Anthropic SDK's failed on every cut, 105,029 cut points, and on the finished reply. The
+   Anthropic SDK's refused only the 8 cut points before each reply's opening brace.
+
 ## What to do
 
 1. **Check why the model stopped before you repair.** `finish_reason: "length"` (OpenAI-style
@@ -97,6 +131,9 @@ marks that look like the delimiters.
    array, not an error. Take the JSON out yourself, or validate the result.
 4. **With json_repair, watch curly quotes.** Until the comma bug is fixed, curly-quoted replies
    lose text silently; jsonrepair returned every one exactly whose text held no curly quote.
+5. **Treat a partial parse as a draft.** Show it while the reply streams, but do not store or
+   act on a number from it before the stream ends. A parser that leaves unfinished values out
+   (the Anthropic SDK's) or says it guessed (the AI SDK's `repaired-parse`) makes that easy.
 
 ## What is in it
 
@@ -117,10 +154,10 @@ marks that look like the delimiters.
   caller sees), **dropped** (fields missing, everything present right) or **changed** (valid JSON
   that says something else). A verdict is read four ways: `if (result.pass)`, `=== true`, zod
   `z.boolean()`, pydantic `bool`.
-- **`results/`**: counts per break, how each value changed, how each verdict was read, and three
-  examples of every kind of change; `explorer.json` holds three replies with what both libraries
-  returned at every cut. A test runs jsonrepair again on all 384,717 variants and must get the
-  published counts; CI does the same for json_repair.
+- **`results/`**: one file per library and setting: counts per break, how each value changed,
+  how each verdict was read, cuts inside `true`/`false`, and three examples of every kind of
+  change. `explorer.json` holds three replies with what every library returned at every cut. A test runs jsonrepair again on all 384,717 variants and must get the
+  published counts; CI runs all eleven settings again and must get every results file.
 
 ## Predictions, written before the run
 
@@ -178,15 +215,15 @@ knew: their docs, and the 20 hand-written cases in `predictions/v0.2-probe-cases
   positions no tokenizer would stop at.
 - Most replies are small objects; 95 are nested (61 judge replies about message drafts and the
   34 from wa-lead).
-- One version of each library, one run (both are deterministic).
+- One version of each library, one run (all of them are deterministic).
 
 ## Run it
 
 ```bash
 npm install && npm run check                 # types, lint, tests (re-runs jsonrepair on everything)
 uv venv .venv && uv pip install --python .venv/bin/python -r requirements.txt
-node scripts/run.ts                          # every variant, through jsonrepair
-.venv/bin/python src/run_py.py               # the same variants through json_repair; pydantic readings
+node scripts/run.ts                          # every variant, through the six JavaScript settings
+.venv/bin/python src/run_py.py               # the five Python settings; pydantic readings for all
 node scripts/score.ts --check                # must match results/
 ```
 

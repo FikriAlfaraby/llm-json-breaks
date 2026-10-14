@@ -7,7 +7,7 @@ import { readFileSync, writeFileSync } from "node:fs"
 
 import { chars, variantsOf } from "../src/breaks.ts"
 import type { Reading, Repaired } from "../src/outcome.ts"
-import { loadReplies } from "../src/replies.ts"
+import { loadReplies, unfence } from "../src/replies.ts"
 import { LIBRARIES, score, type Library } from "../src/score.ts"
 
 const CACHE = new URL("../.cache/", import.meta.url)
@@ -29,11 +29,12 @@ function readLines<T>(name: string): T[] {
 
 const replies = loadReplies()
 const variants = replies.flatMap(variantsOf)
+const fenced = new Set(replies.filter((r) => r.raw !== unfence(r.raw)).map((r) => r.id))
 const repaired = Object.fromEntries((Object.keys(LIBRARIES) as Library[]).map((l) => [l, readLines<Repaired & { i: number }>(`${l}.jsonl`)])) as Record<Library, (Repaired & { i: number })[]>
 
 const outputs: [string, string][] = (Object.keys(LIBRARIES) as Library[]).map((library) => [
   `${library}.json`,
-  JSON.stringify(score(library, variants, repaired[library], readLines<{ i: number; read: Record<string, Reading> }>(`pydantic-${library}.jsonl`)), null, 1) + "\n",
+  JSON.stringify(score(library, variants, repaired[library], readLines<{ i: number; read: Record<string, Reading> }>(`pydantic-${library}.jsonl`), fenced), null, 1) + "\n",
 ])
 
 const index = new Map(variants.map((v, i) => [`${v.reply} ${v.break} ${v.at ?? ""}`, i]))
@@ -42,12 +43,12 @@ const explorer = EXPLORER.map(({ openAfter, ...pick }) => {
   if (!reply) throw new Error(`no reply ${pick.id}`)
   const opens = reply.raw.indexOf(openAfter)
   if (opens < 0) throw new Error(`${pick.id} does not hold ${openAfter}`)
-  const keep = (r: Repaired) => (r.ok ? { ok: true, value: r.value } : { ok: false, error: r.error })
+  const keep = (r: Repaired & { state?: string }) => ({ ...(r.ok ? { ok: true, value: r.value } : { ok: false, error: r.error }), ...(r.state ? { state: r.state } : {}) })
   const cuts = []
   for (let at = 1; at < chars(reply.raw).length; at++) {
     const i = index.get(`${reply.id} cut ${at}`)
     if (i === undefined) throw new Error(`no cut ${at} of ${reply.id}`)
-    cuts.push({ jsonrepair: keep(repaired.jsonrepair[i] as Repaired), json_repair: keep(repaired.json_repair[i] as Repaired) })
+    cuts.push(Object.fromEntries((Object.keys(LIBRARIES) as Library[]).map((l) => [l, keep(repaired[l][i] as Repaired)])))
   }
   return { ...pick, raw: reply.raw, meant: reply.value, start: chars(reply.raw.slice(0, opens + openAfter.length)).length, cuts }
 })

@@ -5,6 +5,15 @@ export const LIBRARIES = {
   jsonrepair: "jsonrepair 3.15.0",
   json_repair: "json_repair 0.64.0",
   "json_repair-strict": "json_repair 0.64.0, strict=True",
+  // v0.2: parsers that read the unfinished JSON of a reply while it streams.
+  "ai-sdk": "ai 7.0.140, parsePartialJson",
+  "partial-json": "partial-json 0.1.7",
+  "langchain-js": "@langchain/core 1.2.17, parsePartialJson",
+  "anthropic-sdk": "@anthropic-ai/sdk 0.133.0, its partial JSON parser",
+  "openai-sdk": "openai 7.33.0, its partial JSON parser",
+  "jiter-on": "jiter 0.17.0, partial_mode=on",
+  "jiter-trailing-strings": "jiter 0.17.0, partial_mode=trailing-strings",
+  "langchain-py": "langchain-core 1.6.10, parse_partial_json",
 } as const
 export type Library = keyof typeof LIBRARIES
 
@@ -41,6 +50,18 @@ export interface Result {
   library: string
   variants: number
   curlyQuotes: QuoteSplit
+  /** The cuts again, split by whether the reply arrived inside a ```json fence. */
+  cutFenced: Record<Outcome, number>
+  cutPlain: Record<Outcome, number>
+  /**
+   * Cuts that stop inside true, false or null at a reply's top level: whether the library
+   * finished the word, left the field out, returned the fragment as text, or refused.
+   */
+  literalCuts: { finished: number; leftOut: number; text: number; other: number; refused: number }
+  /** Cuts that returned a number cut short, by the field it sits in. */
+  numbersCut: Record<string, number>
+  /** What the library said about its own result, when it says anything (the AI SDK does). */
+  states?: Partial<Record<Break, Record<string, number>>>
   outcomes: Record<Break, Record<Outcome, number>>
   changes: Record<Break, Partial<Record<How, number>>>
   verdicts: Record<Break, Record<Reader, Tally>>
@@ -59,8 +80,9 @@ const short = (value: unknown) => {
 export function score(
   library: Library,
   variants: Variant[],
-  repaired: (Repaired & { i: number })[],
+  repaired: (Repaired & { i: number; state?: string })[],
   pydantic?: { i: number; read: Record<string, Reading> }[],
+  fenced: Set<string> = new Set(),
 ): Result {
   if (repaired.length !== variants.length || (pydantic && pydantic.length !== variants.length)) {
     throw new Error(`${library}: ${repaired.length} repairs and ${pydantic?.length} readings for ${variants.length} variants: run the runners again`)
@@ -79,6 +101,10 @@ export function score(
       commaThenMore: { replies: 0, notExact: 0 },
       noCommaThenMore: { replies: 0, notExact: 0 },
     },
+    cutFenced: { exact: 0, refused: 0, dropped: 0, changed: 0 },
+    cutPlain: { exact: 0, refused: 0, dropped: 0, changed: 0 },
+    literalCuts: { finished: 0, leftOut: 0, text: 0, other: 0, refused: 0 },
+    numbersCut: {},
   }
   variants.forEach((variant, i) => {
     const got = repaired[i]
@@ -86,6 +112,17 @@ export function score(
     if (got?.i !== i || (pydantic && read?.i !== i)) throw new Error(`${library}: row ${i} is out of step`)
     const { outcome, differences } = outcomeOf(variant.value, got)
     result.outcomes[variant.break][outcome] += 1
+    if (variant.break === "cut") {
+      result[fenced.has(variant.reply) ? "cutFenced" : "cutPlain"][outcome] += 1
+      const literal = cutLiteral(variant.text, variant.value)
+      if (literal) result.literalCuts[readLiteral(literal, variant.value, got)] += 1
+      for (const d of differences) if (d.how === "number changed") result.numbersCut[d.path] = (result.numbersCut[d.path] ?? 0) + 1
+    }
+    if (got.state) {
+      const states = (result.states ??= {})
+      const tally = (states[variant.break] ??= {})
+      tally[got.state] = (tally[got.state] ?? 0) + 1
+    }
     const kinds = [...new Set(differences.map((d) => d.how))]
     for (const how of kinds) result.changes[variant.break][how] = (result.changes[variant.break][how] ?? 0) + 1
     const label = outcome === "refused" ? "refused" : outcome === "changed" ? kinds.filter((k) => k !== "missing").join(" + ") : undefined
@@ -154,4 +191,24 @@ function cutBeforeComma(meant: unknown, got: unknown, path: string): boolean {
   const whole = at(meant, path)
   const part = at(got, path)
   return typeof whole === "string" && typeof part === "string" && whole[part.length] === ","
+}
+
+const PARTIAL_LITERAL = /"([^"\\]+)"\s*:\s*(t|tr|tru|f|fa|fal|fals|n|nu|nul)$/
+
+/** The top-level key whose true, false or null the cut stopped inside, if it did. */
+function cutLiteral(text: string, meant: unknown): string | undefined {
+  const match = PARTIAL_LITERAL.exec(text)
+  if (!match || !meant || typeof meant !== "object" || Array.isArray(meant)) return undefined
+  const [, key = "", prefix = ""] = match
+  const value = (meant as Record<string, unknown>)[key]
+  return (typeof value === "boolean" || value === null) && String(value).startsWith(prefix) ? key : undefined
+}
+
+function readLiteral(key: string, meant: unknown, got: Repaired): keyof Result["literalCuts"] {
+  if (!got.ok) return "refused"
+  const value = got.value
+  if (!value || typeof value !== "object" || Array.isArray(value) || !(key in value)) return "leftOut"
+  const read = (value as Record<string, unknown>)[key]
+  if (read === (meant as Record<string, unknown>)[key]) return "finished"
+  return typeof read === "string" ? "text" : "other"
 }

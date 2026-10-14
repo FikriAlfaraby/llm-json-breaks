@@ -861,5 +861,28 @@
    "replies": 1449,
    "notExact": 9
   }
+ },
+ "cutFenced": {
+  "exact": 3523,
+  "refused": 0,
+  "dropped": 10761,
+  "changed": 90745
+ },
+ "cutPlain": {
+  "exact": 3826,
+  "refused": 0,
+  "dropped": 36357,
+  "changed": 215786
+ },
+ "literalCuts": {
+  "finished": 0,
+  "leftOut": 0,
+  "text": 5302,
+  "other": 0,
+  "refused": 0
+ },
+ "numbersCut": {
+  "$.score": 2,
+  "$.budgetIDR.value": 107
  }
 }

@@ -1,0 +1,701 @@
+{
+ "library": "openai 7.33.0, its partial JSON parser",
+ "variants": 384717,
+ "outcomes": {
+  "as-sent": {
+   "exact": 1544,
+   "refused": 484,
+   "dropped": 0,
+   "changed": 0
+  },
+  "cut": {
+   "exact": 2451,
+   "refused": 105029,
+   "dropped": 61762,
+   "changed": 191756
+  },
+  "fence": {
+   "exact": 0,
+   "refused": 1544,
+   "dropped": 0,
+   "changed": 0
+  },
+  "prose": {
+   "exact": 0,
+   "refused": 2028,
+   "dropped": 0,
+   "changed": 0
+  },
+  "prose-inline": {
+   "exact": 0,
+   "refused": 2028,
+   "dropped": 0,
+   "changed": 0
+  },
+  "trailing-comma": {
+   "exact": 2028,
+   "refused": 0,
+   "dropped": 0,
+   "changed": 0
+  },
+  "comment": {
+   "exact": 0,
+   "refused": 0,
+   "dropped": 2028,
+   "changed": 0
+  },
+  "python": {
+   "exact": 0,
+   "refused": 0,
+   "dropped": 2028,
+   "changed": 0
+  },
+  "smart-quotes": {
+   "exact": 0,
+   "refused": 0,
+   "dropped": 2028,
+   "changed": 0
+  },
+  "raw-newline": {
+   "exact": 0,
+   "refused": 0,
+   "dropped": 1963,
+   "changed": 1
+  },
+  "inner-quotes": {
+   "exact": 0,
+   "refused": 0,
+   "dropped": 0,
+   "changed": 1959
+  },
+  "missing-comma": {
+   "exact": 2028,
+   "refused": 0,
+   "dropped": 0,
+   "changed": 0
+  },
+  "twice": {
+   "exact": 2028,
+   "refused": 0,
+   "dropped": 0,
+   "changed": 0
+  }
+ },
+ "changes": {
+  "as-sent": {},
+  "cut": {
+   "missing": 119266,
+   "text cut short": 191756
+  },
+  "fence": {},
+  "prose": {},
+  "prose-inline": {},
+  "trailing-comma": {},
+  "comment": {
+   "missing": 2028
+  },
+  "python": {
+   "missing": 2028
+  },
+  "smart-quotes": {
+   "missing": 2028
+  },
+  "raw-newline": {
+   "missing": 1964,
+   "extra": 1
+  },
+  "inner-quotes": {
+   "text cut short": 1959,
+   "missing": 802
+  },
+  "missing-comma": {},
+  "twice": {}
+ },
+ "verdicts": {
+  "as-sent": {
+   "truthy": {
+    "right": 1273,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 324
+   },
+   "strict": {
+    "right": 1273,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 324
+   },
+   "zod": {
+    "right": 1273,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 324
+   },
+   "pydantic": {
+    "right": 1273,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 324
+   }
+  },
+  "cut": {
+   "truthy": {
+    "right": 128627,
+    "failReadAsPass": 0,
+    "passReadAsFail": 45077,
+    "rejected": 59599
+   },
+   "strict": {
+    "right": 128627,
+    "failReadAsPass": 0,
+    "passReadAsFail": 45077,
+    "rejected": 59599
+   },
+   "zod": {
+    "right": 104473,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 128830
+   },
+   "pydantic": {
+    "right": 104473,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 128830
+   }
+  },
+  "fence": {
+   "truthy": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1273
+   },
+   "strict": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1273
+   },
+   "zod": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1273
+   },
+   "pydantic": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1273
+   }
+  },
+  "prose": {
+   "truthy": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "strict": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "zod": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "pydantic": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   }
+  },
+  "prose-inline": {
+   "truthy": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "strict": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "zod": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "pydantic": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   }
+  },
+  "trailing-comma": {
+   "truthy": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "strict": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "zod": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "pydantic": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   }
+  },
+  "comment": {
+   "truthy": {
+    "right": 1050,
+    "failReadAsPass": 0,
+    "passReadAsFail": 547,
+    "rejected": 0
+   },
+   "strict": {
+    "right": 1050,
+    "failReadAsPass": 0,
+    "passReadAsFail": 547,
+    "rejected": 0
+   },
+   "zod": {
+    "right": 820,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 777
+   },
+   "pydantic": {
+    "right": 820,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 777
+   }
+  },
+  "python": {
+   "truthy": {
+    "right": 511,
+    "failReadAsPass": 0,
+    "passReadAsFail": 1086,
+    "rejected": 0
+   },
+   "strict": {
+    "right": 511,
+    "failReadAsPass": 0,
+    "passReadAsFail": 1086,
+    "rejected": 0
+   },
+   "zod": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "pydantic": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   }
+  },
+  "smart-quotes": {
+   "truthy": {
+    "right": 511,
+    "failReadAsPass": 0,
+    "passReadAsFail": 1086,
+    "rejected": 0
+   },
+   "strict": {
+    "right": 511,
+    "failReadAsPass": 0,
+    "passReadAsFail": 1086,
+    "rejected": 0
+   },
+   "zod": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "pydantic": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   }
+  },
+  "raw-newline": {
+   "truthy": {
+    "right": 1050,
+    "failReadAsPass": 0,
+    "passReadAsFail": 547,
+    "rejected": 0
+   },
+   "strict": {
+    "right": 1050,
+    "failReadAsPass": 0,
+    "passReadAsFail": 547,
+    "rejected": 0
+   },
+   "zod": {
+    "right": 820,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 777
+   },
+   "pydantic": {
+    "right": 820,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 777
+   }
+  },
+  "inner-quotes": {
+   "truthy": {
+    "right": 1050,
+    "failReadAsPass": 0,
+    "passReadAsFail": 547,
+    "rejected": 0
+   },
+   "strict": {
+    "right": 1050,
+    "failReadAsPass": 0,
+    "passReadAsFail": 547,
+    "rejected": 0
+   },
+   "zod": {
+    "right": 820,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 777
+   },
+   "pydantic": {
+    "right": 820,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 777
+   }
+  },
+  "missing-comma": {
+   "truthy": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "strict": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "zod": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "pydantic": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   }
+  },
+  "twice": {
+   "truthy": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "strict": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "zod": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "pydantic": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   }
+  }
+ },
+ "examples": {
+  "as-sent": {
+   "refused": [
+    {
+     "reply": "j0001",
+     "text": "```json\n{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\n  \"pass\": true,\n  \"score\": 1.0\n}\n```",
+     "got": "SyntaxError: Unexpected token '`', \"```json\n{\n\"... is not valid JSON at position 0",
+     "how": []
+    },
+    {
+     "reply": "j0002",
+     "text": "```json\n{\n  \"reason\": \"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.\",\n  \"pass\": false,\n  \"score\": 0.0\n}\n```",
+     "got": "SyntaxError: Unexpected token '`', \"```json\n{\n\"... is not valid JSON at position 0",
+     "how": []
+    },
+    {
+     "reply": "j0003",
+     "text": "```json\n{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion.\",\n  \"pass\": true,\n  \"score\": 1.0\n}\n```",
+     "got": "SyntaxError: Unexpected token '`', \"```json\n{\n\"... is not valid JSON at position 0",
+     "how": []
+    }
+   ]
+  },
+  "cut": {
+   "refused": [
+    {
+     "reply": "j0001",
+     "at": 1,
+     "text": "`",
+     "got": "SyntaxError: Unexpected token '`', \"`\" is not valid JSON at position 0",
+     "how": []
+    },
+    {
+     "reply": "j0001",
+     "at": 2,
+     "text": "``",
+     "got": "SyntaxError: Unexpected token '`', \"``\" is not valid JSON at position 0",
+     "how": []
+    },
+    {
+     "reply": "j0001",
+     "at": 3,
+     "text": "```",
+     "got": "SyntaxError: Unexpected token '`', \"```\" is not valid JSON at position 0",
+     "how": []
+    }
+   ],
+   "text cut short": [
+    {
+     "reply": "j0012",
+     "at": 12,
+     "text": "{\"reason\": \"",
+     "got": "{\"reason\":\"\"}",
+     "how": [
+      "$.reason text cut short",
+      "$.pass missing",
+      "$.score missing"
+     ]
+    },
+    {
+     "reply": "j0012",
+     "at": 13,
+     "text": "{\"reason\": \"T",
+     "got": "{\"reason\":\"T\"}",
+     "how": [
+      "$.reason text cut short",
+      "$.pass missing",
+      "$.score missing"
+     ]
+    },
+    {
+     "reply": "j0012",
+     "at": 14,
+     "text": "{\"reason\": \"Th",
+     "got": "{\"reason\":\"Th\"}",
+     "how": [
+      "$.reason text cut short",
+      "$.pass missing",
+      "$.score missing"
+     ]
+    }
+   ]
+  },
+  "fence": {
+   "refused": [
+    {
+     "reply": "j0012",
+     "text": "```json\n{\"reason\": \"The output explicitly mentions that Normandy is 'a region in France', correctly answering what country it is located in.\", \"pass\": true, \"score\": 1.0}\n```",
+     "got": "SyntaxError: Unexpected token '`', \"```json\n{\"\"... is not valid JSON at position 0",
+     "how": []
+    },
+    {
+     "reply": "j0067",
+     "text": "```json\n{\"reason\": \"The output explicitly states that Ctenophora are 'commonly known as comb jellies', correctly answering the question.\", \"pass\": true, \"score\": 1.0}\n```",
+     "got": "SyntaxError: Unexpected token '`', \"```json\n{\"\"... is not valid JSON at position 0",
+     "how": []
+    },
+    {
+     "reply": "j0097",
+     "text": "```json\n{\"reason\": \"The output correctly identifies 'civil disobedience' as a term for when people rebel against laws they consider unfair.\", \"pass\": true, \"score\": 1.0}\n```",
+     "got": "SyntaxError: Unexpected token '`', \"```json\n{\"\"... is not valid JSON at position 0",
+     "how": []
+    }
+   ]
+  },
+  "prose": {
+   "refused": [
+    {
+     "reply": "j0001",
+     "text": "Here is my assessment:\n\n{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\n  \"pass\": true,\n  \"score\": 1.0\n}\n\nLet me know if you need anything else.",
+     "got": "SyntaxError: Unexpected token 'H', \"Here is my\"... is not valid JSON at position 0",
+     "how": []
+    },
+    {
+     "reply": "j0002",
+     "text": "Here is my assessment:\n\n{\n  \"reason\": \"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.\",\n  \"pass\": false,\n  \"score\": 0.0\n}\n\nLet me know if you need anything else.",
+     "got": "SyntaxError: Unexpected token 'H', \"Here is my\"... is not valid JSON at position 0",
+     "how": []
+    },
+    {
+     "reply": "j0003",
+     "text": "Here is my assessment:\n\n{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion.\",\n  \"pass\": true,\n  \"score\": 1.0\n}\n\nLet me know if you need anything else.",
+     "got": "SyntaxError: Unexpected token 'H', \"Here is my\"... is not valid JSON at position 0",
+     "how": []
+    }
+   ]
+  },
+  "prose-inline": {
+   "refused": [
+    {
+     "reply": "j0001",
+     "text": "Here is my assessment: { \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\", \"pass\": true, \"score\": 1.0 } Let me know if you need anything else.",
+     "got": "SyntaxError: Unexpected token 'H', \"Here is my\"... is not valid JSON at position 0",
+     "how": []
+    },
+    {
+     "reply": "j0002",
+     "text": "Here is my assessment: { \"reason\": \"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.\", \"pass\": false, \"score\": 0.0 } Let me know if you need anything else.",
+     "got": "SyntaxError: Unexpected token 'H', \"Here is my\"... is not valid JSON at position 0",
+     "how": []
+    },
+    {
+     "reply": "j0003",
+     "text": "Here is my assessment: { \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion.\", \"pass\": true, \"score\": 1.0 } Let me know if you need anything else.",
+     "got": "SyntaxError: Unexpected token 'H', \"Here is my\"... is not valid JSON at position 0",
+     "how": []
+    }
+   ]
+  },
+  "trailing-comma": {},
+  "comment": {},
+  "python": {},
+  "smart-quotes": {},
+  "raw-newline": {
+   "extra": [
+    {
+     "reply": "x0015",
+     "text": "{\"budgetIDR\":{\"value\":20000000,\"citation\":\"20jt\"},\"areas\":{\"value\":[\"BSD\",\"De Park\"],\"citations\":[\"BSD\",\"De Park\"]},\"intent\":{\"value\":\"rent\",\"citation\":\"kontrakan\"},\"urgency\":{\"value\":\"high\",\"citation\":\"asap bgt gan\"},\"propertyType\":{\"value\":\"rumah\",\"citation\":\"rumah\"},\"timeline\":{\"value\":\"minggu ini\nkalo bisa\",\"citation\":\"minggu ini kalo bisa\"}}",
+     "got": "{\"budgetIDR\":{\"value\":20000000,\"citation\":\"20jt\"},\"areas\":{\"value\":[\"BSD\",\"De Park\"],\"citations\":[\"BSD\",\"De Park\"]},\"intent\":{\"value\":\"rent\",\"citation\":\"kontrakan\"},\"urgency\":{\"value\":\"high\",\"citation\":\"asap bgt gan\"},\"propertyType\":{\"value\":\"rumah\",\"citation\":\"rumah\"},\"timeline\":{},\"citation\":\"minggu ini kalo bisa\"}",
+     "how": [
+      "$.timeline.value missing",
+      "$.timeline.citation missing",
+      "$.citation extra"
+     ]
+    }
+   ]
+  },
+  "inner-quotes": {
+   "text cut short": [
+    {
+     "reply": "j0001",
+     "text": "{\"reason\":\"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) \"champion\" in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\"pass\":true,\"score\":1}",
+     "got": "{\"reason\":\"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) \"}",
+     "how": [
+      "$.reason text cut short",
+      "$.pass missing",
+      "$.score missing"
+     ]
+    },
+    {
+     "reply": "j0002",
+     "text": "{\"reason\":\"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and \"winner)\" of Super Bowl 50, whereas the Denver Broncos represented the AFC.\",\"pass\":false,\"score\":0}",
+     "got": "{\"reason\":\"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and \"}",
+     "how": [
+      "$.reason text cut short",
+      "$.pass missing",
+      "$.score missing"
+     ]
+    },
+    {
+     "reply": "j0003",
+     "text": "{\"reason\":\"The output explicitly identifies the Denver Broncos \"as\" the American Football Conference (AFC) champion.\",\"pass\":true,\"score\":1}",
+     "got": "{\"reason\":\"The output explicitly identifies the Denver Broncos \"}",
+     "how": [
+      "$.reason text cut short",
+      "$.pass missing",
+      "$.score missing"
+     ]
+    }
+   ]
+  },
+  "missing-comma": {},
+  "twice": {}
+ },
+ "curlyQuotes": {
+  "plain": {
+   "exact": 0,
+   "refused": 0,
+   "dropped": 1929,
+   "changed": 0,
+   "cutAtComma": 0
+  },
+  "curly": {
+   "exact": 0,
+   "refused": 0,
+   "dropped": 99,
+   "changed": 0
+  },
+  "commaThenMore": {
+   "replies": 480,
+   "notExact": 480
+  },
+  "noCommaThenMore": {
+   "replies": 1449,
+   "notExact": 1449
+  }
+ },
+ "cutFenced": {
+  "exact": 0,
+  "refused": 105029,
+  "dropped": 0,
+  "changed": 0
+ },
+ "cutPlain": {
+  "exact": 2451,
+  "refused": 0,
+  "dropped": 61762,
+  "changed": 191756
+ },
+ "literalCuts": {
+  "finished": 4249,
+  "leftOut": 0,
+  "text": 0,
+  "other": 0,
+  "refused": 1053
+ },
+ "numbersCut": {}
+}

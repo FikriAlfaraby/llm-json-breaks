@@ -1,0 +1,860 @@
+{
+ "library": "@langchain/core 1.2.17, parsePartialJson",
+ "variants": 384717,
+ "outcomes": {
+  "as-sent": {
+   "exact": 1544,
+   "refused": 484,
+   "dropped": 0,
+   "changed": 0
+  },
+  "cut": {
+   "exact": 3865,
+   "refused": 105029,
+   "dropped": 60239,
+   "changed": 191865
+  },
+  "fence": {
+   "exact": 0,
+   "refused": 1544,
+   "dropped": 0,
+   "changed": 0
+  },
+  "prose": {
+   "exact": 0,
+   "refused": 2028,
+   "dropped": 0,
+   "changed": 0
+  },
+  "prose-inline": {
+   "exact": 0,
+   "refused": 2028,
+   "dropped": 0,
+   "changed": 0
+  },
+  "trailing-comma": {
+   "exact": 0,
+   "refused": 2028,
+   "dropped": 0,
+   "changed": 0
+  },
+  "comment": {
+   "exact": 0,
+   "refused": 2028,
+   "dropped": 0,
+   "changed": 0
+  },
+  "python": {
+   "exact": 0,
+   "refused": 2028,
+   "dropped": 0,
+   "changed": 0
+  },
+  "smart-quotes": {
+   "exact": 0,
+   "refused": 2028,
+   "dropped": 0,
+   "changed": 0
+  },
+  "raw-newline": {
+   "exact": 1964,
+   "refused": 0,
+   "dropped": 0,
+   "changed": 0
+  },
+  "inner-quotes": {
+   "exact": 0,
+   "refused": 1959,
+   "dropped": 0,
+   "changed": 0
+  },
+  "missing-comma": {
+   "exact": 0,
+   "refused": 2028,
+   "dropped": 0,
+   "changed": 0
+  },
+  "twice": {
+   "exact": 0,
+   "refused": 2028,
+   "dropped": 0,
+   "changed": 0
+  }
+ },
+ "changes": {
+  "as-sent": {},
+  "cut": {
+   "missing": 117850,
+   "text cut short": 191747,
+   "text changed": 9,
+   "number changed": 109
+  },
+  "fence": {},
+  "prose": {},
+  "prose-inline": {},
+  "trailing-comma": {},
+  "comment": {},
+  "python": {},
+  "smart-quotes": {},
+  "raw-newline": {},
+  "inner-quotes": {},
+  "missing-comma": {},
+  "twice": {}
+ },
+ "verdicts": {
+  "as-sent": {
+   "truthy": {
+    "right": 1273,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 324
+   },
+   "strict": {
+    "right": 1273,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 324
+   },
+   "zod": {
+    "right": 1273,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 324
+   },
+   "pydantic": {
+    "right": 1273,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 324
+   }
+  },
+  "cut": {
+   "truthy": {
+    "right": 128627,
+    "failReadAsPass": 0,
+    "passReadAsFail": 45077,
+    "rejected": 59599
+   },
+   "strict": {
+    "right": 128627,
+    "failReadAsPass": 0,
+    "passReadAsFail": 45077,
+    "rejected": 59599
+   },
+   "zod": {
+    "right": 104473,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 128830
+   },
+   "pydantic": {
+    "right": 104473,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 128830
+   }
+  },
+  "fence": {
+   "truthy": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1273
+   },
+   "strict": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1273
+   },
+   "zod": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1273
+   },
+   "pydantic": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1273
+   }
+  },
+  "prose": {
+   "truthy": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "strict": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "zod": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "pydantic": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   }
+  },
+  "prose-inline": {
+   "truthy": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "strict": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "zod": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "pydantic": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   }
+  },
+  "trailing-comma": {
+   "truthy": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "strict": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "zod": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "pydantic": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   }
+  },
+  "comment": {
+   "truthy": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "strict": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "zod": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "pydantic": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   }
+  },
+  "python": {
+   "truthy": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "strict": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "zod": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "pydantic": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   }
+  },
+  "smart-quotes": {
+   "truthy": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "strict": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "zod": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "pydantic": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   }
+  },
+  "raw-newline": {
+   "truthy": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "strict": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "zod": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   },
+   "pydantic": {
+    "right": 1597,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 0
+   }
+  },
+  "inner-quotes": {
+   "truthy": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "strict": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "zod": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "pydantic": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   }
+  },
+  "missing-comma": {
+   "truthy": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "strict": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "zod": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "pydantic": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   }
+  },
+  "twice": {
+   "truthy": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "strict": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "zod": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   },
+   "pydantic": {
+    "right": 0,
+    "failReadAsPass": 0,
+    "passReadAsFail": 0,
+    "rejected": 1597
+   }
+  }
+ },
+ "examples": {
+  "as-sent": {
+   "refused": [
+    {
+     "reply": "j0001",
+     "text": "```json\n{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\n  \"pass\": true,\n  \"score\": 1.0\n}\n```",
+     "got": "returned null",
+     "how": []
+    },
+    {
+     "reply": "j0002",
+     "text": "```json\n{\n  \"reason\": \"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.\",\n  \"pass\": false,\n  \"score\": 0.0\n}\n```",
+     "got": "returned null",
+     "how": []
+    },
+    {
+     "reply": "j0003",
+     "text": "```json\n{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion.\",\n  \"pass\": true,\n  \"score\": 1.0\n}\n```",
+     "got": "returned null",
+     "how": []
+    }
+   ]
+  },
+  "cut": {
+   "refused": [
+    {
+     "reply": "j0001",
+     "at": 1,
+     "text": "`",
+     "got": "returned null",
+     "how": []
+    },
+    {
+     "reply": "j0001",
+     "at": 2,
+     "text": "``",
+     "got": "returned null",
+     "how": []
+    },
+    {
+     "reply": "j0001",
+     "at": 3,
+     "text": "```",
+     "got": "returned null",
+     "how": []
+    }
+   ],
+   "text cut short": [
+    {
+     "reply": "j0012",
+     "at": 12,
+     "text": "{\"reason\": \"",
+     "got": "{\"reason\":\"\"}",
+     "how": [
+      "$.reason text cut short",
+      "$.pass missing",
+      "$.score missing"
+     ]
+    },
+    {
+     "reply": "j0012",
+     "at": 13,
+     "text": "{\"reason\": \"T",
+     "got": "{\"reason\":\"T\"}",
+     "how": [
+      "$.reason text cut short",
+      "$.pass missing",
+      "$.score missing"
+     ]
+    },
+    {
+     "reply": "j0012",
+     "at": 14,
+     "text": "{\"reason\": \"Th",
+     "got": "{\"reason\":\"Th\"}",
+     "how": [
+      "$.reason text cut short",
+      "$.pass missing",
+      "$.score missing"
+     ]
+    }
+   ],
+   "text changed": [
+    {
+     "reply": "j0445",
+     "at": 37,
+     "text": "{\"pass\": false, \"reason\": \"The word \\",
+     "got": "{\"pass\":false,\"reason\":\"The word \\\\\"}",
+     "how": [
+      "$.reason text changed"
+     ]
+    },
+    {
+     "reply": "j0445",
+     "at": 47,
+     "text": "{\"pass\": false, \"reason\": \"The word \\\"imperium\\",
+     "got": "{\"pass\":false,\"reason\":\"The word \\\"imperium\\\\\"}",
+     "how": [
+      "$.reason text changed"
+     ]
+    },
+    {
+     "reply": "x0029",
+     "at": 184,
+     "text": "{\n  \"message\": \"Hi, hope your week is going well! Following up on your search for a 2-bedder in District 9, could we arrange a quick 10-minute call tomorrow to discuss your shortlist?\\",
+     "got": "{\"message\":\"Hi, hope your week is going well! Following up on your search for a 2-bedder in District 9, could we arrange a quick 10-minute call tomorrow to discuss your shortlist?\\\\\"}",
+     "how": [
+      "$.message text changed",
+      "$.factsUsed missing"
+     ]
+    }
+   ],
+   "number changed": [
+    {
+     "reply": "j1553",
+     "at": 211,
+     "text": "{\"reason\":\"It identifies southern France, but says the population was centered in central France rather than the commonly cited western regions, so the location is only partially correct.\",\"pass\":false,\"score\":0",
+     "got": "{\"reason\":\"It identifies southern France, but says the population was centered in central France rather than the commonly cited western regions, so the location is only partially correct.\",\"pass\":false,\"score\":0}",
+     "how": [
+      "$.score number changed"
+     ]
+    },
+    {
+     "reply": "j1553",
+     "at": 212,
+     "text": "{\"reason\":\"It identifies southern France, but says the population was centered in central France rather than the commonly cited western regions, so the location is only partially correct.\",\"pass\":false,\"score\":0.",
+     "got": "{\"reason\":\"It identifies southern France, but says the population was centered in central France rather than the commonly cited western regions, so the location is only partially correct.\",\"pass\":false,\"score\":0}",
+     "how": [
+      "$.score number changed"
+     ]
+    },
+    {
+     "reply": "x0002",
+     "at": 33,
+     "text": "{\n  \"budgetIDR\": {\n    \"value\": 1",
+     "got": "{\"budgetIDR\":{\"value\":1}}",
+     "how": [
+      "$.budgetIDR.value number changed",
+      "$.budgetIDR.citation missing",
+      "$.areas missing",
+      "$.intent missing",
+      "$.urgency missing",
+      "$.propertyType missing",
+      "$.timeline missing"
+     ]
+    }
+   ]
+  },
+  "fence": {
+   "refused": [
+    {
+     "reply": "j0012",
+     "text": "```json\n{\"reason\": \"The output explicitly mentions that Normandy is 'a region in France', correctly answering what country it is located in.\", \"pass\": true, \"score\": 1.0}\n```",
+     "got": "returned null",
+     "how": []
+    },
+    {
+     "reply": "j0067",
+     "text": "```json\n{\"reason\": \"The output explicitly states that Ctenophora are 'commonly known as comb jellies', correctly answering the question.\", \"pass\": true, \"score\": 1.0}\n```",
+     "got": "returned null",
+     "how": []
+    },
+    {
+     "reply": "j0097",
+     "text": "```json\n{\"reason\": \"The output correctly identifies 'civil disobedience' as a term for when people rebel against laws they consider unfair.\", \"pass\": true, \"score\": 1.0}\n```",
+     "got": "returned null",
+     "how": []
+    }
+   ]
+  },
+  "prose": {
+   "refused": [
+    {
+     "reply": "j0001",
+     "text": "Here is my assessment:\n\n{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\n  \"pass\": true,\n  \"score\": 1.0\n}\n\nLet me know if you need anything else.",
+     "got": "returned null",
+     "how": []
+    },
+    {
+     "reply": "j0002",
+     "text": "Here is my assessment:\n\n{\n  \"reason\": \"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.\",\n  \"pass\": false,\n  \"score\": 0.0\n}\n\nLet me know if you need anything else.",
+     "got": "returned null",
+     "how": []
+    },
+    {
+     "reply": "j0003",
+     "text": "Here is my assessment:\n\n{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion.\",\n  \"pass\": true,\n  \"score\": 1.0\n}\n\nLet me know if you need anything else.",
+     "got": "returned null",
+     "how": []
+    }
+   ]
+  },
+  "prose-inline": {
+   "refused": [
+    {
+     "reply": "j0001",
+     "text": "Here is my assessment: { \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\", \"pass\": true, \"score\": 1.0 } Let me know if you need anything else.",
+     "got": "returned null",
+     "how": []
+    },
+    {
+     "reply": "j0002",
+     "text": "Here is my assessment: { \"reason\": \"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.\", \"pass\": false, \"score\": 0.0 } Let me know if you need anything else.",
+     "got": "returned null",
+     "how": []
+    },
+    {
+     "reply": "j0003",
+     "text": "Here is my assessment: { \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion.\", \"pass\": true, \"score\": 1.0 } Let me know if you need anything else.",
+     "got": "returned null",
+     "how": []
+    }
+   ]
+  },
+  "trailing-comma": {
+   "refused": [
+    {
+     "reply": "j0001",
+     "text": "{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\n  \"pass\": true,\n  \"score\": 1.0,\n}",
+     "got": "returned null",
+     "how": []
+    },
+    {
+     "reply": "j0002",
+     "text": "{\n  \"reason\": \"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.\",\n  \"pass\": false,\n  \"score\": 0.0,\n}",
+     "got": "returned null",
+     "how": []
+    },
+    {
+     "reply": "j0003",
+     "text": "{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion.\",\n  \"pass\": true,\n  \"score\": 1.0,\n}",
+     "got": "returned null",
+     "how": []
+    }
+   ]
+  },
+  "comment": {
+   "refused": [
+    {
+     "reply": "j0001",
+     "text": "{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\", // as the reply says\n  \"pass\": true,\n  \"score\": 1\n}",
+     "got": "returned null",
+     "how": []
+    },
+    {
+     "reply": "j0002",
+     "text": "{\n  \"reason\": \"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.\", // as the reply says\n  \"pass\": false,\n  \"score\": 0\n}",
+     "got": "returned null",
+     "how": []
+    },
+    {
+     "reply": "j0003",
+     "text": "{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion.\", // as the reply says\n  \"pass\": true,\n  \"score\": 1\n}",
+     "got": "returned null",
+     "how": []
+    }
+   ]
+  },
+  "python": {
+   "refused": [
+    {
+     "reply": "j0001",
+     "text": "{'reason': 'The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).', 'pass': True, 'score': 1}",
+     "got": "returned null",
+     "how": []
+    },
+    {
+     "reply": "j0002",
+     "text": "{'reason': 'The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.', 'pass': False, 'score': 0}",
+     "got": "returned null",
+     "how": []
+    },
+    {
+     "reply": "j0003",
+     "text": "{'reason': 'The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion.', 'pass': True, 'score': 1}",
+     "got": "returned null",
+     "how": []
+    }
+   ]
+  },
+  "smart-quotes": {
+   "refused": [
+    {
+     "reply": "j0001",
+     "text": "{“reason”: “The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).”, “pass”: true, “score”: 1}",
+     "got": "returned null",
+     "how": []
+    },
+    {
+     "reply": "j0002",
+     "text": "{“reason”: “The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.”, “pass”: false, “score”: 0}",
+     "got": "returned null",
+     "how": []
+    },
+    {
+     "reply": "j0003",
+     "text": "{“reason”: “The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion.”, “pass”: true, “score”: 1}",
+     "got": "returned null",
+     "how": []
+    }
+   ]
+  },
+  "raw-newline": {},
+  "inner-quotes": {
+   "refused": [
+    {
+     "reply": "j0001",
+     "text": "{\"reason\":\"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) \"champion\" in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\"pass\":true,\"score\":1}",
+     "got": "returned null",
+     "how": []
+    },
+    {
+     "reply": "j0002",
+     "text": "{\"reason\":\"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and \"winner)\" of Super Bowl 50, whereas the Denver Broncos represented the AFC.\",\"pass\":false,\"score\":0}",
+     "got": "returned null",
+     "how": []
+    },
+    {
+     "reply": "j0003",
+     "text": "{\"reason\":\"The output explicitly identifies the Denver Broncos \"as\" the American Football Conference (AFC) champion.\",\"pass\":true,\"score\":1}",
+     "got": "returned null",
+     "how": []
+    }
+   ]
+  },
+  "missing-comma": {
+   "refused": [
+    {
+     "reply": "j0001",
+     "text": "{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\"\n  \"pass\": true,\n  \"score\": 1\n}",
+     "got": "returned null",
+     "how": []
+    },
+    {
+     "reply": "j0002",
+     "text": "{\n  \"reason\": \"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.\"\n  \"pass\": false,\n  \"score\": 0\n}",
+     "got": "returned null",
+     "how": []
+    },
+    {
+     "reply": "j0003",
+     "text": "{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion.\"\n  \"pass\": true,\n  \"score\": 1\n}",
+     "got": "returned null",
+     "how": []
+    }
+   ]
+  },
+  "twice": {
+   "refused": [
+    {
+     "reply": "j0001",
+     "text": "{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\n  \"pass\": true,\n  \"score\": 1.0\n}\n{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion in the game where they defeated the Carolina Panthers 24–10 (Super Bowl 50).\",\n  \"pass\": true,\n  \"score\": 1.0\n}",
+     "got": "returned null",
+     "how": []
+    },
+    {
+     "reply": "j0002",
+     "text": "{\n  \"reason\": \"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.\",\n  \"pass\": false,\n  \"score\": 0.0\n}\n{\n  \"reason\": \"The output incorrectly names the Pittsburgh Steelers as the AFC champion (and winner) of Super Bowl 50, whereas the Denver Broncos represented the AFC.\",\n  \"pass\": false,\n  \"score\": 0.0\n}",
+     "got": "returned null",
+     "how": []
+    },
+    {
+     "reply": "j0003",
+     "text": "{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion.\",\n  \"pass\": true,\n  \"score\": 1.0\n}\n{\n  \"reason\": \"The output explicitly identifies the Denver Broncos as the American Football Conference (AFC) champion.\",\n  \"pass\": true,\n  \"score\": 1.0\n}",
+     "got": "returned null",
+     "how": []
+    }
+   ]
+  }
+ },
+ "curlyQuotes": {
+  "plain": {
+   "exact": 0,
+   "refused": 1929,
+   "dropped": 0,
+   "changed": 0,
+   "cutAtComma": 0
+  },
+  "curly": {
+   "exact": 0,
+   "refused": 99,
+   "dropped": 0,
+   "changed": 0
+  },
+  "commaThenMore": {
+   "replies": 480,
+   "notExact": 480
+  },
+  "noCommaThenMore": {
+   "replies": 1449,
+   "notExact": 1449
+  }
+ },
+ "cutFenced": {
+  "exact": 0,
+  "refused": 105029,
+  "dropped": 0,
+  "changed": 0
+ },
+ "cutPlain": {
+  "exact": 3865,
+  "refused": 0,
+  "dropped": 60239,
+  "changed": 191865
+ },
+ "literalCuts": {
+  "finished": 4249,
+  "leftOut": 0,
+  "text": 0,
+  "other": 0,
+  "refused": 1053
+ },
+ "numbersCut": {
+  "$.score": 2,
+  "$.budgetIDR.value": 107
+ }
+}
