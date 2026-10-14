@@ -1,2 +1,4 @@
 json-repair==0.64.0
 pydantic==2.14.1
+jiter==0.17.0
+langchain-core==1.6.10

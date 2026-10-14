@@ -145,6 +145,31 @@ output was deleted unread.
 7. **fence, trailing-comma, comment, python, smart-quotes, raw-newline, missing-comma:** exact
    from both default libraries for nearly every reply.
 
+## v0.2 predictions: streaming parsers, written before the run
+
+Apps that show a reply while it streams parse the unfinished JSON at every chunk, and the
+official SDKs build a streamed tool call's input the same way. v0.2 runs the same cuts through
+seven of these parsers: the Vercel AI SDK's `parsePartialJson` (ai 7.0.140), partial-json 0.1.7,
+LangChain's `parsePartialJson` (@langchain/core 1.2.17), the parser the Anthropic SDK ships
+inside it (0.133.0, used for a streamed tool input), the one inside the OpenAI SDK (7.33.0, used
+for streamed structured output), jiter 0.17.0 (`partial_mode="on"` and `"trailing-strings"`) and
+langchain-core 1.6.10 in Python.
+
+Written on 15 October 2026 and tagged `v0.2-prereg` before any of them ran on the corpus. What I
+knew: their docs, and the 20 hand-written cases in `predictions/v0.2-probe-cases.json`.
+
+1. **No streaming parser reads a cut fail as a pass.** The AI SDK, partial-json, LangChain (JS)
+   and the OpenAI SDK's parser finish a cut `fa` as `false`; the Anthropic SDK's parser, jiter and
+   LangChain (Python) leave the field out.
+2. **A cut number comes back whole** from the AI SDK, partial-json, LangChain (both) and jiter: a
+   budget of 1500000000 cut after `15` reads 15. The Anthropic and OpenAI SDK parsers leave it out.
+3. **The Anthropic SDK's parser never returns a changed value on a cut**: it leaves out every
+   unfinished value, so each cut is exact or has fields left out.
+4. **Only the AI SDK says when it guessed**: `repaired-parse` on every cut it can read.
+5. **A fenced reply defeats most of them**: on Gemini's 484 fenced replies, every parser except the
+   Anthropic SDK's fails on the cuts that hold the opening fence; the Anthropic SDK's reads through it.
+6. **Complete replies come back exact** from every parser when they are not fenced.
+
 ## Limits
 
 - Apart from the 484 fenced replies, every break is mine. This measures what a library does
